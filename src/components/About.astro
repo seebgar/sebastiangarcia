@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/photos/profile-min.png";
+---
+
+<div id="pre__section">
+    <section class="about" id="about">
+        <div class="about__txt__section">
+            <h1 class="about__txt__title">I'm Sebastian Garcia</h1>
+            <p class="about__txt__subtitle">
+                Software engineer focused on full-stack development.
+            </p>
+            <p>
+                Over the years, I’ve built and optimized large-scale systems in
+                both start-ups and enterprises. I enjoy designing clean,
+                scalable architectures and solving tough engineering problems
+                through collaboration and iteration. I’m also drawn to cloud
+                technologies, modern development practices, and finding smart
+                ways to reduce complexity.
+            </p>
+        </div>
+
+        <Image
+            class="about__image"
+            src={profilePhoto}
+            alt="Profile Photo"
+            width={400}
+            height={500}
+            loading="lazy"
+            decoding="async"
+        />
+    </section>
+
+    <p class="page__index">About&nbsp;&nbsp;|&nbsp;&nbsp;P/01</p>
+</div>

@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/photos/bogota-min.jpg";
+---
+
+<div id="pre__section">
+    <section class="contact" id="contact">
+        <div class="contact__txt__section">
+            <h1 class="contact__txt__title">Contact</h1>
+            <div class="contact__txt__subtitle">
+                <p>Mail</p>
+                <a href="mailto:hello@example.com">
+                    hello@sebastiangarcia.net
+                </a>
+                <p>LinkedIn</p>
+                <a
+                    href="https://www.linkedin.com/in/sebastiangarcialopez"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    linkedin.com/in/sebastiangarcialopez
+                </a>
+                <p>GitHub</p>
+                <a
+                    href="https://www.github.com/seebgar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    github.com/seebgar
+                </a>
+            </div>
+        </div>
+
+        <div>&nbsp;</div>
+
+        <Image
+            class="contact__image"
+            src={profilePhoto}
+            alt="Profile Photo"
+            loading="lazy"
+            decoding="async"
+        />
+    </section>
+
+    <p class="page__index">Contact&nbsp;&nbsp;|&nbsp;&nbsp;P/03</p>
+</div>

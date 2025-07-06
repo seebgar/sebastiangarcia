@@ -1,0 +1,22 @@
+---
+const links = [
+    { href: "#about", label: "About" },
+    { href: "#resume", label: "Resume" },
+    //{ href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+];
+---
+
+<header id="header">
+    <nav aria-label="Primary">
+        <ul class="header__nav__list">
+            {
+                links.map(({ href, label }) => (
+                    <li>
+                        <a href={href}>{label}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+</header>

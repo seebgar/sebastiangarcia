@@ -1,0 +1,209 @@
+---
+import { Image } from "astro:assets";
+import cloudPhoto from "../assets/photos/cloud.png";
+import databasePhoto from "../assets/photos/database.png";
+import serverPhoto from "../assets/photos/server.png";
+import webPhoto from "../assets/photos/web.png";
+
+const education = [
+    {
+        school: "University of the Andes",
+        period: "2016 – 2021",
+        degree: "Bachelor of Engineering in Computer & Systems",
+    },
+    {
+        school: "Deep Learning AI Certificate",
+        period: "2021",
+        degree: "Neural Networks and Deep Learning",
+    },
+    {
+        school: "Vermont High School",
+        period: "2016",
+        degree: "International Baccalaureate",
+    },
+];
+
+const skills = ["Java", "C#", "React", "Spring Boot", "AWS", "Docker"];
+
+const experience = [
+    {
+        company: "Scotia GBS Colombia / Scotiabank",
+        role: "Full-Stack Software Engineer",
+        period: "Jan 2022 – Present",
+        bullets: [
+            "Led development of Automotive Financing platforms using Java, C#, and React, improving efficiency in processing 200+ monthly credit applications.",
+            "Led security hardening of legacy systems, successfully mitigating critical vulnerabilities and ensuring compliance without service disruptions.",
+            "Led a cross-functional team of developers in modernizing cloud microservices, accelerating development cycles by 50% and ensuring seamless cloud migration from Azure to GCP.",
+            "Integrated internal financing systems with manufacturer platforms, increasing conversion rates in Canada’s automotive market.",
+            "Recognized with the 2023 Top Individual Performance Award for outstanding contributions to software development.",
+        ],
+    },
+    {
+        company: "Mayasoft / MINT Software Systems",
+        role: "Software Developer",
+        period: "Apr 2021 – Dec 2021",
+        bullets: [
+            "Developed TMS Web, a cloud-based platform using Java, Python, and Angular, automating processes for 20+ European airlines and supply-chain companies.",
+            "Leveraged AWS automation tools to streamline customer onboarding, reducing time by 60%.",
+            "Organized and implemented scheduling automation frameworks, enhancing resource allocation and ensuring regulatory compliance.",
+        ],
+    },
+    {
+        company: "Imagine Apps",
+        role: "Junior Full-Stack Developer",
+        period: "Mar 2020 – Apr 2021",
+        bullets: [
+            "Gained hands-on experience in a fast-paced startup, leading product iterations with limited resources and tight timelines.",
+            "Built and designed creative e-commerce and CRM solutions using NodeJS, Angular, Flutter, and Java, increasing client sales by 15% and retention by 10% for Colombian SMEs.",
+            "Collaborated with stakeholders to define business requirements and support end-to-end software product life cycles.",
+        ],
+    },
+];
+
+const additionalExperience = [
+    {
+        company: "University of the Andes",
+        role: "Teaching Assistant",
+        period: "Aug 2017 – Dec 2018",
+        bullets: [
+            "Taught full-stack development and API design using Java, React, NoSQL, and Jenkins.",
+            "Mentored students on coding projects, strengthening their problem-solving skills.",
+        ],
+    },
+];
+---
+
+<div id="pre__section">
+    <section class="resume">
+        <div class="resume__txt__section">
+            <h1 class="about__txt__title" id="resume">Resume.</h1>
+            <p class="resume__txt__subtitle">Education</p>
+            {
+                education.map((item, i) => (
+                    <>
+                        <p class="resume__txt__experience__company">
+                            {item.school}
+                        </p>
+                        <p class="resume__txt__period">{item.period}</p>
+                        <p>{item.degree}</p>
+                        <br />
+                    </>
+                ))
+            }
+        </div>
+
+        <div class="resume__skills">
+            <div class="resume__skills__title">
+                <p class="resume__txt__subtitle">Skills</p>
+            </div>
+            <div class="resume__skills__1">
+                <Image
+                    class="resumen__skills__icon"
+                    src={serverPhoto}
+                    alt="Profile Photo"
+                    width={75}
+                    height={75}
+                    quality={99}
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
+            <div class="resume__skills__2">
+                <p class="resume__txt__experience__company">
+                    Programming Languages
+                </p>
+                <p class="resume__txt__skill__item">
+                    Java (Expert), Python (Expert), .Net C# (3+ years), SQL,
+                    NoSQL.
+                </p>
+            </div>
+            <div class="resume__skills__3">
+                <Image
+                    class="resumen__skills__icon"
+                    src={webPhoto}
+                    alt="Profile Photo"
+                    width={75}
+                    height={75}
+                    quality={99}
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
+            <div class="resume__skills__4">
+                <p class="resume__txt__experience__company">
+                    Web and Mobile Technologies
+                </p>
+                <p class="resume__txt__skill__item">
+                    ReactJS, Angular, JavaScript, TypeScript, HTML, SCSS,
+                    Flutter, Swift.
+                </p>
+            </div>
+            <div class="resume__skills__5">
+                <Image
+                    class="resumen__skills__icon"
+                    src={cloudPhoto}
+                    alt="Profile Photo"
+                    width={75}
+                    height={75}
+                    quality={99}
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
+            <div class="resume__skills__6">
+                <p class="resume__txt__experience__company">Cloud & DevOps</p>
+                <p class="resume__txt__skill__item">
+                    Google Cloud Platform (GCP), Microsoft Azure, Amazon Web
+                    Services (AWS), Kubernetes, Continuous Integration and
+                    Continuous Delivery (CI/CD), Agile Methodologies.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="resume_experience">
+        <div>
+            <p class="resume__txt__subtitle">Experience</p>
+            {
+                experience.map((item, i) => (
+                    <>
+                        <p class="resume__txt__experience__company">
+                            {item.company}
+                        </p>
+                        <p>
+                            {item.role}&nbsp;&sol;&nbsp;{item.period}{" "}
+                        </p>
+                        <ul class="resume__list">
+                            {item.bullets.map((bullet, i) => (
+                                <li>
+                                    <p>{bullet}</p>
+                                </li>
+                            ))}
+                        </ul>
+                        {i !== experience.length - 1 && <hr />}
+                        <br />
+                    </>
+                ))
+            }
+            <p class="resume__txt__subtitle">Additional Experience</p>
+            {
+                additionalExperience.map((item, i) => (
+                    <>
+                        <p class="resume__txt__experience__company">
+                            {item.company}
+                        </p>
+                        <p>{item.role}</p>
+                        <ul class="resume__list">
+                            {item.bullets.map((bullet, i) => (
+                                <li>
+                                    <p>{bullet}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                ))
+            }
+        </div>
+    </section>
+
+    <p class="page__index">Resume&nbsp;&nbsp;|&nbsp;&nbsp;P/02</p>
+</div>
