@@ -5,7 +5,7 @@ Guidance for AI assistants working in this repository.
 ## Project overview
 
 Personal resume / portfolio site for Sebastian Garcia. Single-page static site
-built with **Astro `^5.10.1`** in **TypeScript strict mode**. Astro is the only
+built with **Astro `^6.3.1`** in **TypeScript strict mode**. Astro is the only
 runtime dependency — no UI framework, no CMS, no backend.
 
 ## Commands
