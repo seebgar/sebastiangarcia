@@ -11,7 +11,7 @@ const dict: Dict = {
     contact: "Contact",
   },
   about: {
-    title: "J'suis Sebastian Garcia",
+    title: "Je suis Sebastian Garcia",
     subtitle: "Ingénieur logiciel spécialisé en développement full-stack.",
     bio: "Au fil des années, j’ai conçu et optimisé des systèmes à grande échelle, dans des start-ups comme dans de grandes entreprises. J’aime concevoir des architectures propres et évolutives, et résoudre des problèmes d’ingénierie complexes par la collaboration et l’itération. Je m’intéresse aussi aux technologies cloud, aux pratiques de développement modernes et aux moyens intelligents de réduire la complexité.",
     pageIndex: "À propos  |  P/01",
@@ -52,9 +52,9 @@ const dict: Dict = {
         degree: "Licence en génie des systèmes et informatique",
       },
       {
-        school: "Certificat Deep Learning AI",
+        school: "DeepLearning.AI",
         period: "2021",
-        degree: "Réseaux de neurones et Deep Learning",
+        degree: "Certificat — Réseaux de neurones et Deep Learning",
       },
       {
         school: "Vermont High School",
@@ -69,7 +69,7 @@ const dict: Dict = {
         period: "janv. 2022 – présent",
         bullets: [
           "Dirigé le développement de plateformes de financement automobile avec Java, C# et React, améliorant l’efficacité du traitement de plus de 200 demandes de crédit mensuelles.",
-          "Dirigé le renforcement de la sécurité de systèmes existants, atténuant les vulnérabilités critiques et garantissant la conformité sans interruption de service.",
+          "Dirigé le renforcement de la sécurité de systèmes hérités, atténuant les vulnérabilités critiques et garantissant la conformité sans interruption de service.",
           "Dirigé une équipe pluridisciplinaire de développeurs dans la modernisation des microservices cloud, accélérant les cycles de développement de 50% et assurant une migration cloud fluide d’Azure vers GCP.",
           "Intégré les systèmes internes de financement aux plateformes des constructeurs, augmentant les taux de conversion sur le marché automobile canadien.",
           "Lauréat du Prix de la Meilleure Performance Individuelle en 2023 et 2025 pour des contributions remarquables au développement logiciel.",
