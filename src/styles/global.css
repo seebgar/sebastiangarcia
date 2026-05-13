@@ -74,6 +74,7 @@
 
 html {
   scroll-padding-top: calc(var(--header-height) + var(--space-m));
+  scroll-behavior: smooth;
 }
 
 html,
@@ -383,10 +384,10 @@ main {
 
 @keyframes parallax {
   from {
-    transform: translateY(-10%);
+    transform: translateY(0%);
   }
   to {
-    transform: translateY(90%);
+    transform: translateY(45%);
   }
 }
 
@@ -487,11 +488,9 @@ main {
     inset-inline-end: auto;
     width: min(32rem, 42%);
     padding: var(--space-2xl);
-  }
-
-  .contact__txt__subtitle {
-    grid-template-columns: auto 1fr;
-    column-gap: var(--space-m);
+    animation: parallax linear both;
+    animation-timeline: view();
+    will-change: transform;
   }
 
   .contact__image {
@@ -531,18 +530,4 @@ main {
   top: var(--space-s);
   outline: 2px solid var(--header-color);
   outline-offset: 2px;
-}
-
-/* ====== Reduced Motion Gate ====== */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
-  .contact__txt__section {
-    animation: parallax linear both;
-    animation-timeline: view();
-  }
 }
