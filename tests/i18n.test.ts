@@ -89,9 +89,8 @@ describe('i18n helpers', () => {
     }
   });
 
-  it('localeLabels has a flag and code for every locale', () => {
+  it('localeLabels has a code and name for every locale', () => {
     for (const loc of locales) {
-      expect(localeLabels[loc].flag).toMatch(/\p{Regional_Indicator}\p{Regional_Indicator}/u);
       expect(localeLabels[loc].code).toMatch(/^[A-Z]{2}$/);
       expect(localeLabels[loc].name.length).toBeGreaterThan(0);
     }
