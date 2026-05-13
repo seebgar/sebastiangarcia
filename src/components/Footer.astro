@@ -1,10 +1,10 @@
 ---
-import LanguageSelector from "./LanguageSelector.astro";
-import { getDict } from "../i18n";
-import type { Locale } from "../i18n/types";
+import LanguageSelector from './LanguageSelector.astro';
+import { getDict } from '../i18n';
+import type { Locale } from '../i18n/types';
 
 interface Props {
-    locale: Locale;
+  locale: Locale;
 }
 
 const { locale } = Astro.props;
@@ -13,12 +13,12 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
-    <div>
-        <p>
-            <strong> © {year} Sebastian Garcia</strong>
-        </p>
-        <p>{dict.footer.role}</p>
-        <p>{dict.footer.location}</p>
-        <LanguageSelector current={locale} />
-    </div>
+  <div>
+    <p>
+      <strong> © {year} Sebastian Garcia</strong>
+    </p>
+    <p>{dict.footer.role}</p>
+    <p>{dict.footer.location}</p>
+    <LanguageSelector current={locale} />
+  </div>
 </footer>

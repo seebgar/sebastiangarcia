@@ -1,7 +1,26 @@
 {
-  "name": "my-astro",
+  "name": "sebastiangarcia-net",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
+  "description": "Personal portfolio and resume site for Sebastian Garcia.",
+  "homepage": "https://sebastiangarcia.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seebgar/sebastiangarcia.git"
+  },
+  "author": "Sebastian Garcia <sebastian.garcialopez@outlook.com>",
+  "license": "UNLICENSED",
+  "keywords": [
+    "portfolio",
+    "resume",
+    "astro",
+    "typescript",
+    "personal-website"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -10,16 +29,27 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "build:fonts": "node scripts/subset-fonts.mjs"
+    "build:fonts": "node scripts/subset-fonts.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "astro": "^6.3.1"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@eslint/js": "^10.0.1",
     "@vitest/coverage-v8": "^4.1.6",
+    "eslint": "^10.3.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "globals": "^17.6.0",
     "linkedom": "^0.18.12",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
     "subset-font": "^2.5.0",
+    "typescript-eslint": "^8.59.3",
     "vitest": "^4.1.6"
   }
 }
