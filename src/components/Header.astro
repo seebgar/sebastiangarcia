@@ -1,31 +1,31 @@
 ---
-import { getDict } from "../i18n";
-import type { Locale } from "../i18n/types";
+import { getDict } from '../i18n';
+import type { Locale } from '../i18n/types';
 
 interface Props {
-    locale: Locale;
+  locale: Locale;
 }
 
 const { locale } = Astro.props;
 const dict = getDict(locale);
 
 const links = [
-    { href: "#about", label: dict.nav.about },
-    { href: "#resume", label: dict.nav.resume },
-    { href: "#contact", label: dict.nav.contact },
+  { href: '#about', label: dict.nav.about },
+  { href: '#resume', label: dict.nav.resume },
+  { href: '#contact', label: dict.nav.contact },
 ];
 ---
 
 <header id="header">
-    <nav aria-label="Primary">
-        <ul class="header__nav__list">
-            {
-                links.map(({ href, label }) => (
-                    <li>
-                        <a href={href}>{label}</a>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
+  <nav aria-label="Primary">
+    <ul class="header__nav__list">
+      {
+        links.map(({ href, label }) => (
+          <li>
+            <a href={href}>{label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>

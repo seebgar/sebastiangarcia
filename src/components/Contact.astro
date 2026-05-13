@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import profilePhoto from "../assets/photos/bogota-min.jpg";
-import { getDict } from "../i18n";
-import type { Locale } from "../i18n/types";
+import { Image } from 'astro:assets';
+import profilePhoto from '../assets/photos/bogota-min.jpg';
+import { getDict } from '../i18n';
+import type { Locale } from '../i18n/types';
 
 interface Props {
-    locale: Locale;
+  locale: Locale;
 }
 
 const { locale } = Astro.props;
@@ -13,43 +13,37 @@ const dict = getDict(locale);
 ---
 
 <div class="pre__section">
-    <section class="contact" id="contact">
-        <div class="contact__txt__section">
-            <h2 class="contact__txt__title">{dict.contact.title}</h2>
-            <div class="contact__txt__subtitle">
-                <p>{dict.contact.labels.mail}</p>
-                <a href="mailto:hello@sebastiangarcia.net">
-                    hello@sebastiangarcia.net
-                </a>
-                <p>{dict.contact.labels.linkedin}</p>
-                <a
-                    href="https://www.linkedin.com/in/sebastiangarcialopez"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    linkedin.com/in/sebastiangarcialopez
-                </a>
-                <p>{dict.contact.labels.github}</p>
-                <a
-                    href="https://www.github.com/seebgar"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    github.com/seebgar
-                </a>
-            </div>
-        </div>
+  <section class="contact" id="contact">
+    <div class="contact__txt__section">
+      <h2 class="contact__txt__title">{dict.contact.title}</h2>
+      <div class="contact__txt__subtitle">
+        <p>{dict.contact.labels.mail}</p>
+        <a href="mailto:hello@sebastiangarcia.net"> hello@sebastiangarcia.net </a>
+        <p>{dict.contact.labels.linkedin}</p>
+        <a
+          href="https://www.linkedin.com/in/sebastiangarcialopez"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          linkedin.com/in/sebastiangarcialopez
+        </a>
+        <p>{dict.contact.labels.github}</p>
+        <a href="https://www.github.com/seebgar" target="_blank" rel="noopener noreferrer">
+          github.com/seebgar
+        </a>
+      </div>
+    </div>
 
-        <div>&nbsp;</div>
+    <div>&nbsp;</div>
 
-        <Image
-            class="contact__image"
-            src={profilePhoto}
-            alt={dict.contact.imageAlt}
-            loading="lazy"
-            decoding="async"
-        />
-    </section>
+    <Image
+      class="contact__image"
+      src={profilePhoto}
+      alt={dict.contact.imageAlt}
+      loading="lazy"
+      decoding="async"
+    />
+  </section>
 
-    <p class="page__index">{dict.contact.pageIndex}</p>
+  <p class="page__index">{dict.contact.pageIndex}</p>
 </div>

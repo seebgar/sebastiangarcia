@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import profilePhoto from "../assets/photos/profile-min.png";
-import { getDict, siteUrl } from "../i18n";
-import type { Locale } from "../i18n/types";
+import { Image } from 'astro:assets';
+import profilePhoto from '../assets/photos/profile-min.png';
+import { getDict, siteUrl } from '../i18n';
+import type { Locale } from '../i18n/types';
 
 interface Props {
-    locale: Locale;
+  locale: Locale;
 }
 
 const { locale } = Astro.props;
@@ -14,41 +14,33 @@ const personUrl = Astro.site?.toString() ?? siteUrl;
 ---
 
 <div class="pre__section">
-    <section
-        class="about"
-        id="about"
-        itemscope
-        itemtype="https://schema.org/Person"
-    >
-        <div class="about__txt__section">
-            <meta itemprop="name" content="Sebastian Garcia" />
-            <meta itemprop="jobTitle" content={dict.footer.role} />
-            <meta itemprop="email" content="hello@sebastiangarcia.net" />
-            <meta itemprop="address" content="Bogotá, Colombia" />
-            <link itemprop="url" href={personUrl} />
-            <link
-                itemprop="sameAs"
-                href="https://www.linkedin.com/in/sebastiangarcialopez"
-            />
-            <link itemprop="sameAs" href="https://github.com/seebgar" />
+  <section class="about" id="about" itemscope itemtype="https://schema.org/Person">
+    <div class="about__txt__section">
+      <meta itemprop="name" content="Sebastian Garcia" />
+      <meta itemprop="jobTitle" content={dict.footer.role} />
+      <meta itemprop="email" content="hello@sebastiangarcia.net" />
+      <meta itemprop="address" content="Bogotá, Colombia" />
+      <link itemprop="url" href={personUrl} />
+      <link itemprop="sameAs" href="https://www.linkedin.com/in/sebastiangarcialopez" />
+      <link itemprop="sameAs" href="https://github.com/seebgar" />
 
-            <h1 class="about__txt__title">{dict.about.title}</h1>
-            <p class="about__txt__subtitle">{dict.about.subtitle}</p>
-            <p itemprop="description">{dict.about.bio}</p>
-        </div>
+      <h1 class="about__txt__title">{dict.about.title}</h1>
+      <p class="about__txt__subtitle">{dict.about.subtitle}</p>
+      <p itemprop="description">{dict.about.bio}</p>
+    </div>
 
-        <Image
-            class="about__image"
-            src={profilePhoto}
-            alt={dict.about.imageAlt}
-            width={400}
-            height={600}
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            itemprop="image"
-        />
-    </section>
+    <Image
+      class="about__image"
+      src={profilePhoto}
+      alt={dict.about.imageAlt}
+      width={400}
+      height={600}
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      itemprop="image"
+    />
+  </section>
 
-    <p class="page__index">{dict.about.pageIndex}</p>
+  <p class="page__index">{dict.about.pageIndex}</p>
 </div>

@@ -1,148 +1,141 @@
 ---
-import { Image } from "astro:assets";
-import cloudPhoto from "../assets/photos/cloud.png";
-import serverPhoto from "../assets/photos/server.png";
-import webPhoto from "../assets/photos/web.png";
-import { getDict } from "../i18n";
-import type { Locale } from "../i18n/types";
+import { Image } from 'astro:assets';
+import cloudPhoto from '../assets/photos/cloud.png';
+import serverPhoto from '../assets/photos/server.png';
+import webPhoto from '../assets/photos/web.png';
+import { getDict } from '../i18n';
+import type { Locale } from '../i18n/types';
 
 interface Props {
-    locale: Locale;
+  locale: Locale;
 }
 
 const { locale } = Astro.props;
 const dict = getDict(locale);
-const { sections, skills, education, experience, additionalExperience } =
-    dict.resume;
+const { sections, skills, education, experience, additionalExperience } = dict.resume;
 ---
 
 <div class="pre__section">
-    <section class="resume">
-        <div class="resume__txt__section">
-            <h2 class="about__txt__title" id="resume">{dict.resume.title}</h2>
-            <p class="resume__txt__subtitle">{sections.education}</p>
-            {
-                education.map((item) => (
-                    <>
-                        <p class="resume__txt__experience__company">
-                            {item.school}
-                        </p>
-                        <p class="resume__txt__period">{item.period}</p>
-                        <p>{item.degree}</p>
-                        <br />
-                    </>
-                ))
-            }
-        </div>
+  <section class="resume">
+    <div class="resume__txt__section">
+      <h2 class="about__txt__title" id="resume">{dict.resume.title}</h2>
+      <p class="resume__txt__subtitle">{sections.education}</p>
+      {
+        education.map((item) => (
+          <>
+            <p class="resume__txt__experience__company">{item.school}</p>
+            <p class="resume__txt__period">{item.period}</p>
+            <p>{item.degree}</p>
+            <br />
+          </>
+        ))
+      }
+    </div>
 
-        <div class="resume__skills">
-            <div class="resume__skills__title">
-                <p class="resume__txt__subtitle">{sections.skills}</p>
-            </div>
-            <div class="resume__skills__1">
-                <Image
-                    class="resumen__skills__icon"
-                    src={serverPhoto}
-                    alt={skills.programmingLanguages.alt}
-                    width={75}
-                    height={75}
-                    quality={99}
-                    loading="lazy"
-                    decoding="async"
-                />
-            </div>
-            <div class="resume__skills__2">
-                <p class="resume__txt__experience__company">
-                    {skills.programmingLanguages.label}
-                </p>
-                <p class="resume__txt__skill__item">
-                    {skills.programmingLanguages.items}
-                </p>
-            </div>
-            <div class="resume__skills__3">
-                <Image
-                    class="resumen__skills__icon"
-                    src={webPhoto}
-                    alt={skills.webMobile.alt}
-                    width={75}
-                    height={75}
-                    quality={99}
-                    loading="lazy"
-                    decoding="async"
-                />
-            </div>
-            <div class="resume__skills__4">
-                <p class="resume__txt__experience__company">
-                    {skills.webMobile.label}
-                </p>
-                <p class="resume__txt__skill__item">{skills.webMobile.items}</p>
-            </div>
-            <div class="resume__skills__5">
-                <Image
-                    class="resumen__skills__icon"
-                    src={cloudPhoto}
-                    alt={skills.cloudDevOps.alt}
-                    width={75}
-                    height={75}
-                    quality={99}
-                    loading="lazy"
-                    decoding="async"
-                />
-            </div>
-            <div class="resume__skills__6">
-                <p class="resume__txt__experience__company">
-                    {skills.cloudDevOps.label}
-                </p>
-                <p class="resume__txt__skill__item">
-                    {skills.cloudDevOps.items}
-                </p>
-            </div>
-        </div>
-    </section>
-    <section class="resume_experience">
-        <div>
-            <p class="resume__txt__subtitle">{sections.experience}</p>
-            {
-                experience.map((item, i) => (
-                    <>
-                        <p class="resume__txt__experience__company">
-                            {item.company}
-                        </p>
-                        <p>
-                            {item.role}&nbsp;&sol;&nbsp;{item.period}{" "}
-                        </p>
-                        <ul class="resume__list">
-                            {item.bullets.map((bullet) => (
-                                <li>
-                                    <p>{bullet}</p>
-                                </li>
-                            ))}
-                        </ul>
-                        {i !== experience.length - 1 && <hr />}
-                        <br />
-                    </>
-                ))
-            }
-            <p class="resume__txt__subtitle">{sections.additionalExperience}</p>
-            {
-                additionalExperience.map((item) => (
-                    <>
-                        <p class="resume__txt__experience__company">
-                            {item.company}
-                        </p>
-                        <p>{item.role}</p>
-                        <ul class="resume__list">
-                            {item.bullets.map((bullet) => (
-                                <li>
-                                    <p>{bullet}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </>
-                ))
-            }
-        </div>
-    </section>
+    <div class="resume__skills">
+      <div class="resume__skills__title">
+        <p class="resume__txt__subtitle">{sections.skills}</p>
+      </div>
+      <div class="resume__skills__1">
+        <Image
+          class="resumen__skills__icon"
+          src={serverPhoto}
+          alt={skills.programmingLanguages.alt}
+          width={75}
+          height={75}
+          quality={99}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="resume__skills__2">
+        <p class="resume__txt__experience__company">
+          {skills.programmingLanguages.label}
+        </p>
+        <p class="resume__txt__skill__item">
+          {skills.programmingLanguages.items}
+        </p>
+      </div>
+      <div class="resume__skills__3">
+        <Image
+          class="resumen__skills__icon"
+          src={webPhoto}
+          alt={skills.webMobile.alt}
+          width={75}
+          height={75}
+          quality={99}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="resume__skills__4">
+        <p class="resume__txt__experience__company">
+          {skills.webMobile.label}
+        </p>
+        <p class="resume__txt__skill__item">{skills.webMobile.items}</p>
+      </div>
+      <div class="resume__skills__5">
+        <Image
+          class="resumen__skills__icon"
+          src={cloudPhoto}
+          alt={skills.cloudDevOps.alt}
+          width={75}
+          height={75}
+          quality={99}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="resume__skills__6">
+        <p class="resume__txt__experience__company">
+          {skills.cloudDevOps.label}
+        </p>
+        <p class="resume__txt__skill__item">
+          {skills.cloudDevOps.items}
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="resume_experience">
+    <div>
+      <p class="resume__txt__subtitle">{sections.experience}</p>
+      {
+        experience.map((item, i) => (
+          <>
+            <p class="resume__txt__experience__company">{item.company}</p>
+            <p>
+              {item.role}&nbsp;&sol;&nbsp;{item.period}{' '}
+            </p>
+            <ul class="resume__list">
+              {item.bullets.map((bullet) => (
+                <li>
+                  <p>{bullet}</p>
+                </li>
+              ))}
+            </ul>
+            {i !== experience.length - 1 && <hr />}
+            <br />
+          </>
+        ))
+      }
+      <p class="resume__txt__subtitle">{sections.additionalExperience}</p>
+      {
+        additionalExperience.map((item) => (
+          <>
+            <p class="resume__txt__experience__company">{item.company}</p>
+            <p>{item.role}</p>
+            <ul class="resume__list">
+              {item.bullets.map((bullet) => (
+                <li>
+                  <p>{bullet}</p>
+                </li>
+              ))}
+            </ul>
+          </>
+        ))
+      }
+    </div>
+  </section>
 
-    <p class="page__index">{dict.resume.pageIndex}</p>
+  <p class="page__index">{dict.resume.pageIndex}</p>
 </div>
