@@ -290,27 +290,17 @@ main {
 
 .resume__skills {
   display: grid;
+  row-gap: var(--space-m);
+}
+
+.resume__skills__card {
+  display: grid;
   grid-template-columns: auto 1fr;
   column-gap: var(--space-m);
-  row-gap: var(--space-m);
   align-items: center;
 }
 
-.resume__skills__title {
-  grid-column: 1 / -1;
-}
-
-.resume__skills__1,
-.resume__skills__3,
-.resume__skills__5 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.resume__skills__2,
-.resume__skills__4,
-.resume__skills__6 {
+.resume__skills__card__text {
   display: grid;
   gap: var(--space-3xs);
 }

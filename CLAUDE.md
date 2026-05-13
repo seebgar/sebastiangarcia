@@ -61,7 +61,7 @@ Type errors surface via the Astro/TS toolchain during `astro build` or
 │   │   ├── Resume.astro      # education + skills + experience
 │   │   ├── Contact.astro     # mail + LinkedIn + GitHub
 │   │   ├── Footer.astro      # role, location, language selector
-│   │   └── LanguageSelector.astro  # 🇺🇸 EN · 🇨🇴 ES · 🇫🇷 FR flag links
+│   │   └── LanguageSelector.astro  # EN · ES · FR language-code links
 │   ├── i18n/
 │   │   ├── types.ts          # Dict / Locale / EducationEntry / ExperienceEntry shapes
 │   │   ├── en.ts, es.ts, fr.ts  # one Dict per locale
@@ -122,8 +122,9 @@ can link to it.
 - Proper nouns (company names, "Sebastian Garcia", tech names like Java/AWS)
   stay verbatim across locales. Period strings (`"Jan 2022 – Present"`) are
   localized per dictionary, not formatted via `Intl.DateTimeFormat`.
-- The flag emoji on the language selector are decorative
-  (`aria-hidden="true"`); screen readers read the language code + name.
+- The language selector renders the two-letter code (`EN` / `ES` / `FR`) as
+  the visible link text; each link's accessible name is the language's full
+  native name via `aria-label`.
 
 ## Component conventions
 
@@ -259,9 +260,9 @@ itemtype="https://schema.org/Person"`) with `name`, `jobTitle`, `email`,
 - Skip-to-content link inside `<body>` targeting `#main` (visible on focus).
 - All interactive elements have visible `:focus-visible` outlines (set on `a`
   globally in `global.css`).
-- The language selector's flags are decorative
-  (`aria-hidden="true"`); the link's accessible name is the language's full
-  native name (`English`, `Español`, `Français`).
+- The language selector's link text is the two-letter code (`EN` / `ES` /
+  `FR`); each link's accessible name is the language's full native name
+  (`English`, `Español`, `Français`) via `aria-label`.
 - External links carry `target="_blank" rel="noopener noreferrer"`.
 
 ## Things that do not exist here — do not invent them
