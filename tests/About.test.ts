@@ -20,7 +20,7 @@ describe("About", () => {
         ).toContain("Software engineer");
     });
 
-    it("renders an image with non-empty alt and 2:3 aspect ratio (no vertical crop)", async () => {
+    it("renders an LCP-prioritized image with non-empty alt and 2:3 aspect ratio", async () => {
         const container = await AstroContainer.create();
         const html = await container.renderToString(About);
         const { document } = parseHTML(html);
@@ -30,8 +30,9 @@ describe("About", () => {
         ) as HTMLImageElement | null;
         expect(img).not.toBeNull();
         expect(img!.getAttribute("alt")).toBeTruthy();
-        expect(img!.getAttribute("loading")).toBe("lazy");
+        expect(img!.getAttribute("loading")).toBe("eager");
         expect(img!.getAttribute("decoding")).toBe("async");
+        expect(img!.getAttribute("fetchpriority")).toBe("high");
 
         const width = Number(img!.getAttribute("width"));
         const height = Number(img!.getAttribute("height"));

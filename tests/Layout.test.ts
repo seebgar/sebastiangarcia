@@ -86,6 +86,25 @@ describe("Layout", () => {
         expect(csp).toContain("upgrade-insecure-requests");
     });
 
+    it("preloads the critical fonts with crossorigin", async () => {
+        const container = await AstroContainer.create();
+        const html = await container.renderToString(Layout);
+        const { document } = parseHTML(html);
+
+        const preloads = [
+            ...document.querySelectorAll("link[rel='preload'][as='font']"),
+        ] as HTMLLinkElement[];
+
+        const hrefs = preloads.map((l) => l.getAttribute("href"));
+        expect(hrefs).toContain("/fonts/Inter.woff2");
+        expect(hrefs).toContain("/fonts/NotoSansJP.woff2");
+
+        for (const link of preloads) {
+            expect(link.getAttribute("type")).toBe("font/woff2");
+            expect(link.hasAttribute("crossorigin")).toBe(true);
+        }
+    });
+
     it("references icon and manifest assets from /", async () => {
         const container = await AstroContainer.create();
         const html = await container.renderToString(Layout);
