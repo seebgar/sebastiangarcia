@@ -423,6 +423,7 @@ main {
 .contact__txt__subtitle a {
   color: var(--header-color);
   font-size: var(--text-body);
+  overflow-wrap: anywhere;
 }
 
 .contact__image {
@@ -537,6 +538,9 @@ main {
   html {
     scroll-behavior: smooth;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
   .contact__txt__section {
     animation: parallax linear both;
     animation-timeline: view();

@@ -2,7 +2,7 @@ import type { Dict } from './types';
 
 const dict: Dict = {
   meta: {
-    title: 'Sebastian Garcia — Ingénieur logiciel à Bogotá, Colombie',
+    title: 'Sebastian Garcia - Ingénieur logiciel à Bogotá, Colombie',
     description:
       'Sebastian Garcia, ingénieur logiciel basé à Bogotá, Colombie. Conçoit des plateformes full-stack, des microservices cloud et des systèmes à grande échelle chez Scotiabank.',
   },
