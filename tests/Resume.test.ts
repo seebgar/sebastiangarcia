@@ -33,17 +33,23 @@ for (const locale of locales) {
       expect(companies?.[0].textContent?.trim()).toBe(dict.resume.education[0].school);
     });
 
-    it('renders three skill icons with localized alt text and lazy loading', async () => {
+    it('renders one skill card per dictionary category with localized alt text and lazy loading', async () => {
       const container = await AstroContainer.create();
       const html = await container.renderToString(Resume, {
         props: { locale },
       });
       const { document } = parseHTML(html);
 
+      const expectedCardCount = Object.keys(dict.resume.skills).length;
+
+      const cards = document.querySelectorAll('.resume__skills__card');
+      expect(cards.length).toBe(expectedCardCount);
+
       const icons = [
         ...document.querySelectorAll('img.resumen__skills__icon'),
       ] as HTMLImageElement[];
-      expect(icons.length).toBe(3);
+      expect(icons.length).toBe(expectedCardCount);
+
       const expectedAlts = [
         dict.resume.skills.programmingLanguages.alt,
         dict.resume.skills.webMobile.alt,

@@ -13,6 +13,12 @@ interface Props {
 const { locale } = Astro.props;
 const dict = getDict(locale);
 const { sections, skills, education, experience, additionalExperience } = dict.resume;
+
+const skillCards = [
+  { category: skills.programmingLanguages, photo: serverPhoto },
+  { category: skills.webMobile, photo: webPhoto },
+  { category: skills.cloudDevOps, photo: cloudPhoto },
+];
 ---
 
 <div class="pre__section">
@@ -36,64 +42,26 @@ const { sections, skills, education, experience, additionalExperience } = dict.r
       <div class="resume__skills__title">
         <p class="resume__txt__subtitle">{sections.skills}</p>
       </div>
-      <div class="resume__skills__1">
-        <Image
-          class="resumen__skills__icon"
-          src={serverPhoto}
-          alt={skills.programmingLanguages.alt}
-          width={75}
-          height={75}
-          quality={99}
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      <div class="resume__skills__2">
-        <p class="resume__txt__experience__company">
-          {skills.programmingLanguages.label}
-        </p>
-        <p class="resume__txt__skill__item">
-          {skills.programmingLanguages.items}
-        </p>
-      </div>
-      <div class="resume__skills__3">
-        <Image
-          class="resumen__skills__icon"
-          src={webPhoto}
-          alt={skills.webMobile.alt}
-          width={75}
-          height={75}
-          quality={99}
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      <div class="resume__skills__4">
-        <p class="resume__txt__experience__company">
-          {skills.webMobile.label}
-        </p>
-        <p class="resume__txt__skill__item">{skills.webMobile.items}</p>
-      </div>
-      <div class="resume__skills__5">
-        <Image
-          class="resumen__skills__icon"
-          src={cloudPhoto}
-          alt={skills.cloudDevOps.alt}
-          width={75}
-          height={75}
-          quality={99}
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      <div class="resume__skills__6">
-        <p class="resume__txt__experience__company">
-          {skills.cloudDevOps.label}
-        </p>
-        <p class="resume__txt__skill__item">
-          {skills.cloudDevOps.items}
-        </p>
-      </div>
+      {
+        skillCards.map(({ category, photo }) => (
+          <div class="resume__skills__card">
+            <Image
+              class="resumen__skills__icon"
+              src={photo}
+              alt={category.alt}
+              width={75}
+              height={75}
+              quality={99}
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="resume__skills__card__text">
+              <p class="resume__txt__experience__company">{category.label}</p>
+              <p class="resume__txt__skill__item">{category.items}</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </section>
   <section class="resume_experience">
