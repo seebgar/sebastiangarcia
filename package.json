@@ -9,7 +9,8 @@
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "build:fonts": "node scripts/subset-fonts.mjs"
   },
   "dependencies": {
     "astro": "^6.3.1"
@@ -17,6 +18,7 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.6",
     "linkedom": "^0.18.12",
+    "subset-font": "^2.5.0",
     "vitest": "^4.1.6"
   }
 }
