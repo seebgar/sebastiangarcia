@@ -22,8 +22,8 @@ export const localeHref = (locale: Locale): string =>
 export const getLocalePaths = () =>
   locales.filter((l) => l !== defaultLocale).map((lang) => ({ params: { lang } }));
 
-export const localeLabels: Record<Locale, { code: string; flag: string; name: string }> = {
-  en: { code: 'EN', flag: '🇺🇸', name: 'English' },
-  es: { code: 'ES', flag: '🇨🇴', name: 'Español' },
-  fr: { code: 'FR', flag: '🇫🇷', name: 'Français' },
+export const localeLabels: Record<Locale, { code: string; name: string }> = {
+  en: { code: 'EN', name: 'English' },
+  es: { code: 'ES', name: 'Español' },
+  fr: { code: 'FR', name: 'Français' },
 };
