@@ -161,10 +161,10 @@ external stylesheet request).
 - **Breakpoints**: 768px (tablet) and 1280px (large desktop).
 - **Class names** follow a `block__element__modifier` underscore-pair
   convention (e.g. `resume__txt__subtitle`, `header__nav__list`).
-- **Motion is gated** behind `@media (prefers-reduced-motion: no-preference)`
-  — both `scroll-behavior: smooth` and the Contact section's
-  `animation-timeline: view()` parallax. Users who request less motion get
-  static behavior by default.
+- **Motion**: `scroll-behavior: smooth` is set on `html` site-wide. The
+  Contact section's `animation-timeline: view()` parallax only runs at
+  tablet+ (inside the `@media (min-width: 768px)` block) because the
+  parallax assumes the desktop overlay layout.
 - **Skip-link**: `.skip-link` is visually hidden until focused, then slides
   into view at the top-left.
 
@@ -257,7 +257,6 @@ itemtype="https://schema.org/Person"`) with `name`, `jobTitle`, `email`,
   (`aria-hidden="true"`); the link's accessible name is the language's full
   native name (`English`, `Español`, `Français`).
 - External links carry `target="_blank" rel="noopener noreferrer"`.
-- Animations honor `prefers-reduced-motion`.
 
 ## Things that do not exist here — do not invent them
 
