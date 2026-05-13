@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import profilePhoto from '../assets/photos/profile-min.png';
-import { getDict, localeHref, locales, siteUrl } from '../i18n';
+import { getDict, localeHref, localeMetadata, locales, siteUrl } from '../i18n';
 import type { Locale } from '../i18n/types';
 
 interface Props {
@@ -15,12 +15,6 @@ const site = Astro.site ?? new URL(siteUrl);
 const toAbs = (path: string) => new URL(path, site).toString();
 
 const canonical = toAbs(localeHref(locale));
-
-const ogLocaleMap: Record<Locale, string> = {
-  en: 'en_US',
-  es: 'es_CO',
-  fr: 'fr_FR',
-};
 
 const ogImageAsset = await getImage({
   src: profilePhoto,
@@ -62,11 +56,13 @@ const ogImageUrl = toAbs(ogImageAsset.src);
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="1200" />
     <meta property="og:image:alt" content={dict.about.imageAlt} />
-    <meta property="og:locale" content={ogLocaleMap[locale]} />
+    <meta property="og:locale" content={localeMetadata[locale].ogLocale} />
     {
       locales
         .filter((loc) => loc !== locale)
-        .map((loc) => <meta property="og:locale:alternate" content={ogLocaleMap[loc]} />)
+        .map((loc) => (
+          <meta property="og:locale:alternate" content={localeMetadata[loc].ogLocale} />
+        ))
     }
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={dict.meta.title} />
