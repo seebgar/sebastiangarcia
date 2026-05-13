@@ -65,7 +65,7 @@ Type errors surface via the Astro/TS toolchain during `astro build` or
 │   ├── i18n/
 │   │   ├── types.ts          # Dict / Locale / EducationEntry / ExperienceEntry shapes
 │   │   ├── en.ts, es.ts, fr.ts  # one Dict per locale
-│   │   └── index.ts          # locales, defaultLocale, getDict, localeHref, isLocale, getLocalePaths, localeLabels, siteUrl
+│   │   └── index.ts          # locales, defaultLocale, getDict, localeHref, isLocale, getLocalePaths, localeMetadata, siteUrl
 │   ├── layouts/
 │   ├── styles/
 │   │   └── global.css        # design tokens, reset, components, prefers-reduced-motion gate
