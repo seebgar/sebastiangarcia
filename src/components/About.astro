@@ -1,29 +1,29 @@
 ---
 import { Image } from "astro:assets";
 import profilePhoto from "../assets/photos/profile-min.png";
+import { getDict } from "../i18n";
+import type { Locale } from "../i18n/types";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDict(locale);
 ---
 
 <div class="pre__section">
     <section class="about" id="about">
         <div class="about__txt__section">
-            <h1 class="about__txt__title">I'm Sebastian Garcia</h1>
-            <p class="about__txt__subtitle">
-                Software engineer focused on full-stack development.
-            </p>
-            <p>
-                Over the years, I’ve built and optimized large-scale systems in
-                both start-ups and enterprises. I enjoy designing clean,
-                scalable architectures and solving tough engineering problems
-                through collaboration and iteration. I’m also drawn to cloud
-                technologies, modern development practices, and finding smart
-                ways to reduce complexity.
-            </p>
+            <h1 class="about__txt__title">{dict.about.title}</h1>
+            <p class="about__txt__subtitle">{dict.about.subtitle}</p>
+            <p>{dict.about.bio}</p>
         </div>
 
         <Image
             class="about__image"
             src={profilePhoto}
-            alt="Portrait of Sebastian Garcia"
+            alt={dict.about.imageAlt}
             width={400}
             height={600}
             loading="eager"
@@ -32,5 +32,5 @@ import profilePhoto from "../assets/photos/profile-min.png";
         />
     </section>
 
-    <p class="page__index">About&nbsp;&nbsp;|&nbsp;&nbsp;P/01</p>
+    <p class="page__index">{dict.about.pageIndex}</p>
 </div>

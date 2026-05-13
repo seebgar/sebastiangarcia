@@ -1,16 +1,25 @@
+---
+import { getDict, localeHref, locales } from "../i18n";
+import type { Locale } from "../i18n/types";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDict(locale);
+const canonical = localeHref(locale);
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <meta name="theme-color" content="#f6f6f6" />
-        <meta name="description" content="Sebastian Garcia Resume." />
+        <meta name="description" content={dict.meta.description} />
         <meta name="author" content="Sebastian Garcia" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <meta
-            http-equiv="Content-Security-Policy"
-            content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
-        />
         <link
             rel="preload"
             href="/fonts/Inter.woff2"
@@ -43,7 +52,18 @@
             href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <title>Sebastian Garcia</title>
+        <link rel="canonical" href={canonical} />
+        {
+            locales.map((loc) => (
+                <link
+                    rel="alternate"
+                    hreflang={loc}
+                    href={localeHref(loc)}
+                />
+            ))
+        }
+        <link rel="alternate" hreflang="x-default" href="/" />
+        <title>{dict.meta.title}</title>
     </head>
     <body>
         <slot />

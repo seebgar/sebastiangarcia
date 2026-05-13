@@ -1,0 +1,40 @@
+---
+import {
+    getDict,
+    localeHref,
+    localeLabels,
+    locales,
+} from "../i18n";
+import type { Locale } from "../i18n/types";
+
+interface Props {
+    current: Locale;
+}
+
+const { current } = Astro.props;
+const dict = getDict(current);
+---
+
+<nav class="footer__lang" aria-label={dict.footer.languageNavLabel}>
+    <ul>
+        {
+            locales.map((loc) => {
+                const isCurrent = loc === current;
+                const { code, flag, name } = localeLabels[loc];
+                return (
+                    <li>
+                        <a
+                            href={localeHref(loc)}
+                            hreflang={loc}
+                            aria-current={isCurrent ? "page" : undefined}
+                            aria-label={name}
+                        >
+                            <span aria-hidden="true">{flag}</span>
+                            <span>{code}</span>
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</nav>

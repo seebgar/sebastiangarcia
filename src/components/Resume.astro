@@ -3,80 +3,26 @@ import { Image } from "astro:assets";
 import cloudPhoto from "../assets/photos/cloud.png";
 import serverPhoto from "../assets/photos/server.png";
 import webPhoto from "../assets/photos/web.png";
+import { getDict } from "../i18n";
+import type { Locale } from "../i18n/types";
 
-const education = [
-    {
-        school: "University of the Andes",
-        period: "2016 – 2021",
-        degree: "Bachelor of Engineering in Computer & Systems",
-    },
-    {
-        school: "Deep Learning AI Certificate",
-        period: "2021",
-        degree: "Neural Networks and Deep Learning",
-    },
-    {
-        school: "Vermont High School",
-        period: "2016",
-        degree: "International Baccalaureate",
-    },
-];
+interface Props {
+    locale: Locale;
+}
 
-const experience = [
-    {
-        company: "Scotia GBS Colombia / Scotiabank",
-        role: "Full-Stack Software Engineer",
-        period: "Jan 2022 – Present",
-        bullets: [
-            "Led development of Automotive Financing platforms using Java, C#, and React, improving efficiency in processing 200+ monthly credit applications.",
-            "Led security hardening of legacy systems, successfully mitigating critical vulnerabilities and ensuring compliance without service disruptions.",
-            "Led a cross-functional team of developers in modernizing cloud microservices, accelerating development cycles by 50% and ensuring seamless cloud migration from Azure to GCP.",
-            "Integrated internal financing systems with manufacturer platforms, increasing conversion rates in Canada’s automotive market.",
-            "Recognized with the 2023 and 2025 Top Individual Performance Award for outstanding contributions to software development.",
-        ],
-    },
-    {
-        company: "Mayasoft / MINT Software Systems",
-        role: "Software Developer",
-        period: "Apr 2021 – Dec 2021",
-        bullets: [
-            "Developed TMS Web, a cloud-based platform using Java, Python, and Angular, automating processes for 20+ European airlines and supply-chain companies.",
-            "Leveraged AWS automation tools to streamline customer onboarding, reducing time by 60%.",
-            "Organized and implemented scheduling automation frameworks, enhancing resource allocation and ensuring regulatory compliance.",
-        ],
-    },
-    {
-        company: "Imagine Apps",
-        role: "Junior Full-Stack Developer",
-        period: "Mar 2020 – Apr 2021",
-        bullets: [
-            "Gained hands-on experience in a fast-paced startup, leading product iterations with limited resources and tight timelines.",
-            "Built and designed creative e-commerce and CRM solutions using NodeJS, Angular, Flutter, and Java, increasing client sales by 15% and retention by 10% for Colombian SMEs.",
-            "Collaborated with stakeholders to define business requirements and support end-to-end software product life cycles.",
-        ],
-    },
-];
-
-const additionalExperience = [
-    {
-        company: "University of the Andes",
-        role: "Teaching Assistant",
-        period: "Aug 2017 – Dec 2018",
-        bullets: [
-            "Taught full-stack development and API design using Java, React, NoSQL, and Jenkins.",
-            "Mentored students on coding projects, strengthening their problem-solving skills.",
-        ],
-    },
-];
+const { locale } = Astro.props;
+const dict = getDict(locale);
+const { sections, skills, education, experience, additionalExperience } =
+    dict.resume;
 ---
 
 <div class="pre__section">
     <section class="resume">
         <div class="resume__txt__section">
-            <h1 class="about__txt__title" id="resume">Resume.</h1>
-            <p class="resume__txt__subtitle">Education</p>
+            <h1 class="about__txt__title" id="resume">{dict.resume.title}</h1>
+            <p class="resume__txt__subtitle">{sections.education}</p>
             {
-                education.map((item, i) => (
+                education.map((item) => (
                     <>
                         <p class="resume__txt__experience__company">
                             {item.school}
@@ -91,13 +37,13 @@ const additionalExperience = [
 
         <div class="resume__skills">
             <div class="resume__skills__title">
-                <p class="resume__txt__subtitle">Skills</p>
+                <p class="resume__txt__subtitle">{sections.skills}</p>
             </div>
             <div class="resume__skills__1">
                 <Image
                     class="resumen__skills__icon"
                     src={serverPhoto}
-                    alt="Programming languages icon"
+                    alt={skills.programmingLanguages.alt}
                     width={75}
                     height={75}
                     quality={99}
@@ -107,18 +53,17 @@ const additionalExperience = [
             </div>
             <div class="resume__skills__2">
                 <p class="resume__txt__experience__company">
-                    Programming Languages
+                    {skills.programmingLanguages.label}
                 </p>
                 <p class="resume__txt__skill__item">
-                    Java (Expert), Python (Expert), .Net C# (3+ years), SQL,
-                    NoSQL.
+                    {skills.programmingLanguages.items}
                 </p>
             </div>
             <div class="resume__skills__3">
                 <Image
                     class="resumen__skills__icon"
                     src={webPhoto}
-                    alt="Web and mobile technologies icon"
+                    alt={skills.webMobile.alt}
                     width={75}
                     height={75}
                     quality={99}
@@ -128,18 +73,15 @@ const additionalExperience = [
             </div>
             <div class="resume__skills__4">
                 <p class="resume__txt__experience__company">
-                    Web and Mobile Technologies
+                    {skills.webMobile.label}
                 </p>
-                <p class="resume__txt__skill__item">
-                    ReactJS, Angular, JavaScript, TypeScript, HTML, SCSS,
-                    Flutter, Swift.
-                </p>
+                <p class="resume__txt__skill__item">{skills.webMobile.items}</p>
             </div>
             <div class="resume__skills__5">
                 <Image
                     class="resumen__skills__icon"
                     src={cloudPhoto}
-                    alt="Cloud and DevOps icon"
+                    alt={skills.cloudDevOps.alt}
                     width={75}
                     height={75}
                     quality={99}
@@ -148,18 +90,18 @@ const additionalExperience = [
                 />
             </div>
             <div class="resume__skills__6">
-                <p class="resume__txt__experience__company">Cloud & DevOps</p>
+                <p class="resume__txt__experience__company">
+                    {skills.cloudDevOps.label}
+                </p>
                 <p class="resume__txt__skill__item">
-                    Google Cloud Platform (GCP), Microsoft Azure, Amazon Web
-                    Services (AWS), Kubernetes, Continuous Integration and
-                    Continuous Delivery (CI/CD), Agile Methodologies.
+                    {skills.cloudDevOps.items}
                 </p>
             </div>
         </div>
     </section>
     <section class="resume_experience">
         <div>
-            <p class="resume__txt__subtitle">Experience</p>
+            <p class="resume__txt__subtitle">{sections.experience}</p>
             {
                 experience.map((item, i) => (
                     <>
@@ -170,7 +112,7 @@ const additionalExperience = [
                             {item.role}&nbsp;&sol;&nbsp;{item.period}{" "}
                         </p>
                         <ul class="resume__list">
-                            {item.bullets.map((bullet, i) => (
+                            {item.bullets.map((bullet) => (
                                 <li>
                                     <p>{bullet}</p>
                                 </li>
@@ -181,16 +123,16 @@ const additionalExperience = [
                     </>
                 ))
             }
-            <p class="resume__txt__subtitle">Additional Experience</p>
+            <p class="resume__txt__subtitle">{sections.additionalExperience}</p>
             {
-                additionalExperience.map((item, i) => (
+                additionalExperience.map((item) => (
                     <>
                         <p class="resume__txt__experience__company">
                             {item.company}
                         </p>
                         <p>{item.role}</p>
                         <ul class="resume__list">
-                            {item.bullets.map((bullet, i) => (
+                            {item.bullets.map((bullet) => (
                                 <li>
                                     <p>{bullet}</p>
                                 </li>
@@ -202,5 +144,5 @@ const additionalExperience = [
         </div>
     </section>
 
-    <p class="page__index">Resume&nbsp;&nbsp;|&nbsp;&nbsp;P/02</p>
+    <p class="page__index">{dict.resume.pageIndex}</p>
 </div>
