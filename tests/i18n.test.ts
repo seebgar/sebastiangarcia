@@ -8,7 +8,7 @@ import {
   getLocalePaths,
   isLocale,
   localeHref,
-  localeLabels,
+  localeMetadata,
   locales,
 } from '../src/i18n';
 import type { Locale } from '../src/i18n/types';
@@ -89,10 +89,11 @@ describe('i18n helpers', () => {
     }
   });
 
-  it('localeLabels has a code and name for every locale', () => {
+  it('localeMetadata has a code, name, and ogLocale for every locale', () => {
     for (const loc of locales) {
-      expect(localeLabels[loc].code).toMatch(/^[A-Z]{2}$/);
-      expect(localeLabels[loc].name.length).toBeGreaterThan(0);
+      expect(localeMetadata[loc].code).toMatch(/^[A-Z]{2}$/);
+      expect(localeMetadata[loc].name.length).toBeGreaterThan(0);
+      expect(localeMetadata[loc].ogLocale).toMatch(/^[a-z]{2}_[A-Z]{2}$/);
     }
   });
 });

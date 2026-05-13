@@ -1,5 +1,5 @@
 ---
-import { getDict, localeHref, localeLabels, locales } from '../i18n';
+import { getDict, localeHref, localeMetadata, locales } from '../i18n';
 import type { Locale } from '../i18n/types';
 
 interface Props {
@@ -15,7 +15,7 @@ const dict = getDict(current);
     {
       locales.map((loc) => {
         const isCurrent = loc === current;
-        const { code, name } = localeLabels[loc];
+        const { code, name } = localeMetadata[loc];
         return (
           <li>
             <a
