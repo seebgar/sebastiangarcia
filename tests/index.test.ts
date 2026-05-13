@@ -21,4 +21,27 @@ describe("index page", () => {
         expect(main!.querySelector("#resume")).not.toBeNull();
         expect(main!.querySelector("#contact")).not.toBeNull();
     });
+
+    it("emits unique IDs across the rendered document", async () => {
+        const container = await AstroContainer.create();
+        const html = await container.renderToString(IndexPage);
+        const { document } = parseHTML(html);
+
+        const ids = [...document.querySelectorAll("[id]")].map((el) =>
+            el.getAttribute("id"),
+        );
+        const duplicates = ids.filter(
+            (id, i) => id !== null && ids.indexOf(id) !== i,
+        );
+        expect(duplicates).toEqual([]);
+    });
+
+    it("wraps each top-level section in a .pre__section container", async () => {
+        const container = await AstroContainer.create();
+        const html = await container.renderToString(IndexPage);
+        const { document } = parseHTML(html);
+
+        const wrappers = document.querySelectorAll("main .pre__section");
+        expect(wrappers.length).toBe(3);
+    });
 });
