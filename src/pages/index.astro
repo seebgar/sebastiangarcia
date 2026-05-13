@@ -1,20 +1,5 @@
 ---
-import "../styles/global.css";
-
-import Header from "../components/Header.astro";
-import About from "../components/About.astro";
-import Resume from "../components/Resume.astro";
-import Contact from "../components/Contact.astro";
-import Layout from "../layouts/Layout.astro";
-import Footer from "../components/Footer.astro";
+import Page from "../components/Page.astro";
 ---
 
-<Layout>
-    <Header />
-    <main>
-        <About />
-        <Resume />
-        <Contact />
-    </main>
-    <Footer />
-</Layout>
+<Page locale="en" />

@@ -1,36 +1,54 @@
 ---
 import { Image } from "astro:assets";
 import profilePhoto from "../assets/photos/profile-min.png";
+import { getDict, siteUrl } from "../i18n";
+import type { Locale } from "../i18n/types";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDict(locale);
+const personUrl = Astro.site?.toString() ?? siteUrl;
 ---
 
 <div class="pre__section">
-    <section class="about" id="about">
+    <section
+        class="about"
+        id="about"
+        itemscope
+        itemtype="https://schema.org/Person"
+    >
         <div class="about__txt__section">
-            <h1 class="about__txt__title">I'm Sebastian Garcia</h1>
-            <p class="about__txt__subtitle">
-                Software engineer focused on full-stack development.
-            </p>
-            <p>
-                Over the years, I’ve built and optimized large-scale systems in
-                both start-ups and enterprises. I enjoy designing clean,
-                scalable architectures and solving tough engineering problems
-                through collaboration and iteration. I’m also drawn to cloud
-                technologies, modern development practices, and finding smart
-                ways to reduce complexity.
-            </p>
+            <meta itemprop="name" content="Sebastian Garcia" />
+            <meta itemprop="jobTitle" content={dict.footer.role} />
+            <meta itemprop="email" content="hello@sebastiangarcia.net" />
+            <meta itemprop="address" content="Bogotá, Colombia" />
+            <link itemprop="url" href={personUrl} />
+            <link
+                itemprop="sameAs"
+                href="https://www.linkedin.com/in/sebastiangarcialopez"
+            />
+            <link itemprop="sameAs" href="https://github.com/seebgar" />
+
+            <h1 class="about__txt__title">{dict.about.title}</h1>
+            <p class="about__txt__subtitle">{dict.about.subtitle}</p>
+            <p itemprop="description">{dict.about.bio}</p>
         </div>
 
         <Image
             class="about__image"
             src={profilePhoto}
-            alt="Portrait of Sebastian Garcia"
+            alt={dict.about.imageAlt}
             width={400}
             height={600}
             loading="eager"
             decoding="async"
             fetchpriority="high"
+            itemprop="image"
         />
     </section>
 
-    <p class="page__index">About&nbsp;&nbsp;|&nbsp;&nbsp;P/01</p>
+    <p class="page__index">{dict.about.pageIndex}</p>
 </div>

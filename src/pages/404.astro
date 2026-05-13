@@ -1,0 +1,31 @@
+---
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout locale="en">
+    <main class="not-found">
+        <h1>404</h1>
+        <p>The page you’re looking for doesn’t exist.</p>
+        <a href="/">Back to home</a>
+    </main>
+</Layout>
+
+<style>
+    .not-found {
+        min-height: 100svh;
+        display: grid;
+        place-content: center;
+        text-align: center;
+        gap: 1rem;
+        padding: 2rem;
+    }
+    .not-found h1 {
+        font-size: clamp(4rem, 12vw, 8rem);
+        margin: 0;
+    }
+    .not-found a {
+        color: inherit;
+        text-decoration: underline;
+    }
+</style>

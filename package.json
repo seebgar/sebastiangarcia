@@ -16,6 +16,7 @@
     "astro": "^6.3.1"
   },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@vitest/coverage-v8": "^4.1.6",
     "linkedom": "^0.18.12",
     "subset-font": "^2.5.0",

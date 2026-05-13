@@ -190,6 +190,37 @@ main {
     line-height: var(--leading-normal);
 }
 
+.footer__lang {
+    margin-block-start: var(--space-s);
+}
+
+.footer__lang ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-m);
+    font-size: var(--text-sm);
+    letter-spacing: 0.05em;
+}
+
+.footer__lang a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding-block: var(--space-2xs);
+    color: var(--header-color);
+    font-weight: 500;
+}
+
+.footer__lang a[aria-current="page"] {
+    font-weight: 700;
+    pointer-events: none;
+    opacity: 1;
+}
+
 /* ====== Sections ====== */
 .about,
 .resume,

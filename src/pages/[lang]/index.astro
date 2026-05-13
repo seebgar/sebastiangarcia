@@ -1,0 +1,12 @@
+---
+import type { GetStaticPaths } from "astro";
+import Page from "../../components/Page.astro";
+import { getLocalePaths } from "../../i18n";
+import type { Locale } from "../../i18n/types";
+
+export const getStaticPaths = getLocalePaths satisfies GetStaticPaths;
+
+const locale = Astro.params.lang as Locale;
+---
+
+<Page locale={locale} />

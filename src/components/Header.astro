@@ -1,9 +1,18 @@
 ---
+import { getDict } from "../i18n";
+import type { Locale } from "../i18n/types";
+
+interface Props {
+    locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDict(locale);
+
 const links = [
-    { href: "#about", label: "About" },
-    { href: "#resume", label: "Resume" },
-    //{ href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "#about", label: dict.nav.about },
+    { href: "#resume", label: dict.nav.resume },
+    { href: "#contact", label: dict.nav.contact },
 ];
 ---
 
