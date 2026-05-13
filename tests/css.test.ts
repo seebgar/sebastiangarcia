@@ -17,6 +17,12 @@ const blockFor = (selector: string) => {
   return match ? match[1] : null;
 };
 
+const mediaBlock = (query: RegExp) => {
+  const re = new RegExp(`@media\\s*\\(${query.source}\\)\\s*\\{([\\s\\S]*?\\n\\})`, 'm');
+  const match = css.match(re);
+  return match ? match[1] : null;
+};
+
 describe('global.css contract', () => {
   it('defines a .skip-link rule', () => {
     const body = blockFor('.skip-link');
@@ -35,25 +41,51 @@ describe('global.css contract', () => {
     expect(htmlBody).toMatch(/scroll-behavior:\s*smooth/);
   });
 
-  it('declares the contact parallax inside the min-width: 768px breakpoint', () => {
-    const mediaMatch = css.match(/@media\s*\(min-width:\s*768px\)\s*\{([\s\S]*?)\n\}/);
-    expect(mediaMatch).not.toBeNull();
-    const inside = mediaMatch![1];
-    expect(inside).toMatch(/animation:\s*parallax/);
-    expect(inside).toMatch(/animation-timeline:\s*view\(\)/);
-  });
-
-  it('does not declare the parallax animation on the base .contact__txt__section rule', () => {
-    const body = blockFor('.contact__txt__section');
+  it('sizes the contact background image by aspect-ratio, not viewport-height units', () => {
+    const body = blockFor('.contact__bg');
     expect(body).not.toBeNull();
-    expect(body).not.toMatch(/animation:\s*parallax/);
+    expect(body).toMatch(/aspect-ratio:\s*\d/);
+    expect(body).not.toMatch(/height:\s*\d+(s|d|l)?vh/);
   });
 
-  it('does not gate motion behind prefers-reduced-motion', () => {
-    expect(css).not.toMatch(/prefers-reduced-motion/);
+  it('places the contact background image and contact card in a shared grid cell', () => {
+    expect(css).toMatch(/\.contact__bg\s*,\s*\.contact__card\s*\{[^}]*grid-area:\s*1\s*\/\s*1/);
+  });
+
+  it('does not size the contact section by viewport-height units', () => {
+    const body = blockFor('.contact');
+    expect(body).not.toBeNull();
+    expect(body).not.toMatch(/min-height:\s*\d+(s|d|l)?vh/);
+    expect(body).not.toMatch(/height:\s*\d+(s|d|l)?vh/);
+  });
+
+  it('declares three parallax keyframes with monotonically increasing range', () => {
+    expect(css).toMatch(/@keyframes\s+parallax-sm\s*\{[\s\S]*?translateY\(15%\)/);
+    expect(css).toMatch(/@keyframes\s+parallax-md\s*\{[\s\S]*?translateY\(30%\)/);
+    expect(css).toMatch(/@keyframes\s+parallax-lg\s*\{[\s\S]*?translateY\(45%\)/);
+  });
+
+  it('runs the contact parallax at every breakpoint via animation-name overrides', () => {
+    expect(css).toMatch(
+      /\.contact__card\s*\{[^}]*animation-name:\s*parallax-sm[^}]*animation-timeline:\s*view\(\)/,
+    );
+
+    const md = mediaBlock(/min-width:\s*768px/);
+    expect(md).not.toBeNull();
+    expect(md!).toMatch(/\.contact__card[^{]*\{[^}]*animation-name:\s*parallax-md/);
+
+    const lg = mediaBlock(/min-width:\s*1280px/);
+    expect(lg).not.toBeNull();
+    expect(lg!).toMatch(/\.contact__card[^{]*\{[^}]*animation-name:\s*parallax-lg/);
+  });
+
+  it('disables the contact parallax when prefers-reduced-motion is reduced', () => {
+    const reduced = mediaBlock(/prefers-reduced-motion:\s*reduce/);
+    expect(reduced).not.toBeNull();
+    expect(reduced!).toMatch(/\.contact__card[^{]*\{[^}]*animation:\s*none/);
   });
 
   it('allows long contact links to wrap so they fit narrow cards', () => {
-    expect(css).toMatch(/\.contact__txt__subtitle a\s*\{[^}]*overflow-wrap:\s*anywhere/);
+    expect(css).toMatch(/\.contact__card__links a\s*\{[^}]*overflow-wrap:\s*anywhere/);
   });
 });

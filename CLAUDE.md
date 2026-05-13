@@ -162,9 +162,15 @@ external stylesheet request).
 - **Class names** follow a `block__element__modifier` underscore-pair
   convention (e.g. `resume__txt__subtitle`, `header__nav__list`).
 - **Motion**: `scroll-behavior: smooth` is set on `html` site-wide. The
-  Contact section's `animation-timeline: view()` parallax only runs at
-  tablet+ (inside the `@media (min-width: 768px)` block) because the
-  parallax assumes the desktop overlay layout.
+  Contact section's `animation-timeline: view()` parallax runs at every
+  breakpoint via three keyframe variants (`parallax-sm` / `-md` / `-lg`)
+  with monotonically increasing range, swapped via `animation-name`
+  overrides at `@media (min-width: 768px)` and `@media (min-width: 1280px)`.
+  `prefers-reduced-motion: reduce` disables the animation entirely.
+  See `docs/adr/0001-contact-section-geometry-stable-layout.md` for the
+  reasoning behind the Contact section's aspect-ratio image + grid-cell
+  layering (which intentionally diverges from the `100svh` pattern used by
+  other full-height sections).
 - **Skip-link**: `.skip-link` is visually hidden until focused, then slides
   into view at the top-left.
 
@@ -283,3 +289,21 @@ Default branch is `main`. The repository is hosted at
 instruction. **Do not push to `main` or open a PR unless explicitly asked.**
 When you commit, the author is the user — **do not** add a
 `Co-Authored-By: Claude` trailer (this is in user memory; respect it).
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as GitHub issues at `seebgar/sebastiangarcia`; use the `gh` CLI.
+See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Canonical triage role names are used verbatim (`needs-triage`, `needs-info`,
+`ready-for-agent`, `ready-for-human`, `wontfix`). See
+`docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context layout — one `CONTEXT.md` and one `docs/adr/` at the repo
+root. See `docs/agents/domain.md`.
