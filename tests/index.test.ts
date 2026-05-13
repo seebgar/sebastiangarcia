@@ -53,6 +53,14 @@ for (const locale of locales) {
             expect(wrappers.length).toBe(3);
         });
 
+        it("renders exactly one h1 on the page", async () => {
+            const html = await renderForLocale(locale);
+            const { document } = parseHTML(html);
+
+            const h1s = document.querySelectorAll("h1");
+            expect(h1s.length).toBe(1);
+        });
+
         it("uses the matching html lang attribute", async () => {
             const html = await renderForLocale(locale);
             const { document } = parseHTML(html);

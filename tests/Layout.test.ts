@@ -113,7 +113,7 @@ for (const locale of locales) {
             }
         });
 
-        it("emits a canonical link and hreflang alternates for every locale", async () => {
+        it("emits an absolute canonical and hreflang alternates for every locale", async () => {
             const container = await AstroContainer.create();
             const html = await container.renderToString(Layout, {
                 props: { locale },
@@ -123,7 +123,8 @@ for (const locale of locales) {
             const canonical = document
                 .querySelector("link[rel='canonical']")
                 ?.getAttribute("href");
-            expect(canonical).toBe(localeHref(locale));
+            expect(canonical).toMatch(/^https:\/\//);
+            expect(canonical?.endsWith(localeHref(locale))).toBe(true);
 
             const alternates = [
                 ...document.querySelectorAll("link[rel='alternate']"),
@@ -139,8 +140,75 @@ for (const locale of locales) {
                 const alt = alternates.find(
                     (l) => l.getAttribute("hreflang") === loc,
                 );
-                expect(alt?.getAttribute("href")).toBe(localeHref(loc));
+                expect(alt?.getAttribute("href")).toMatch(/^https:\/\//);
+                expect(alt?.getAttribute("href")?.endsWith(localeHref(loc)))
+                    .toBe(true);
             }
+        });
+
+        it("sets indexable robots directives", async () => {
+            const container = await AstroContainer.create();
+            const html = await container.renderToString(Layout, {
+                props: { locale },
+            });
+            const { document } = parseHTML(html);
+
+            const robots = document
+                .querySelector("meta[name='robots']")
+                ?.getAttribute("content");
+            expect(robots).toContain("index");
+            expect(robots).toContain("follow");
+            expect(robots).toContain("max-image-preview:large");
+        });
+
+        it("emits Open Graph tags with absolute URLs and locale alternates", async () => {
+            const container = await AstroContainer.create();
+            const html = await container.renderToString(Layout, {
+                props: { locale },
+            });
+            const { document } = parseHTML(html);
+
+            const og = (property: string) =>
+                document
+                    .querySelector(`meta[property='${property}']`)
+                    ?.getAttribute("content");
+
+            expect(og("og:type")).toBe("website");
+            expect(og("og:site_name")).toBe("Sebastian Garcia");
+            expect(og("og:url")).toMatch(/^https:\/\//);
+            expect(og("og:title")).toBe(dict.meta.title);
+            expect(og("og:description")).toBe(dict.meta.description);
+            expect(og("og:image")).toMatch(/^https:\/\/.+\.(jpg|jpeg|webp|png)/);
+            expect(og("og:image:width")).toBe("1200");
+            expect(og("og:image:height")).toBe("1200");
+            expect(og("og:image:alt")).toBe(dict.about.imageAlt);
+            expect(og("og:locale")).toMatch(/^[a-z]{2}_[A-Z]{2}$/);
+
+            const alternates = [
+                ...document.querySelectorAll(
+                    "meta[property='og:locale:alternate']",
+                ),
+            ].map((m) => m.getAttribute("content"));
+            expect(alternates.length).toBe(locales.length - 1);
+        });
+
+        it("emits Twitter Card tags", async () => {
+            const container = await AstroContainer.create();
+            const html = await container.renderToString(Layout, {
+                props: { locale },
+            });
+            const { document } = parseHTML(html);
+
+            const tw = (name: string) =>
+                document
+                    .querySelector(`meta[name='${name}']`)
+                    ?.getAttribute("content");
+
+            expect(tw("twitter:card")).toMatch(/^summary/);
+            expect(tw("twitter:title")).toBe(dict.meta.title);
+            expect(tw("twitter:description")).toBe(dict.meta.description);
+            expect(tw("twitter:image")).toMatch(/^https:\/\//);
+            expect(tw("twitter:image:alt")).toBe(dict.about.imageAlt);
         });
 
         it("references icon and manifest assets from /", async () => {

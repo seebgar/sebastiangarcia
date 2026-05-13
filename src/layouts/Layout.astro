@@ -1,5 +1,7 @@
 ---
-import { getDict, localeHref, locales } from "../i18n";
+import { getImage } from "astro:assets";
+import profilePhoto from "../assets/photos/profile-min.png";
+import { getDict, localeHref, locales, siteUrl } from "../i18n";
 import type { Locale } from "../i18n/types";
 
 interface Props {
@@ -8,7 +10,25 @@ interface Props {
 
 const { locale } = Astro.props;
 const dict = getDict(locale);
-const canonical = localeHref(locale);
+const site = Astro.site ?? new URL(siteUrl);
+
+const toAbs = (path: string) => new URL(path, site).toString();
+
+const canonical = toAbs(localeHref(locale));
+
+const ogLocaleMap: Record<Locale, string> = {
+    en: "en_US",
+    es: "es_CO",
+    fr: "fr_FR",
+};
+
+const ogImageAsset = await getImage({
+    src: profilePhoto,
+    width: 1200,
+    height: 1200,
+    format: "jpg",
+});
+const ogImageUrl = toAbs(ogImageAsset.src);
 ---
 
 <!doctype html>
@@ -20,6 +40,10 @@ const canonical = localeHref(locale);
         <meta name="description" content={dict.meta.description} />
         <meta name="author" content="Sebastian Garcia" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta
+            name="robots"
+            content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
         <link
             rel="preload"
             href="/fonts/Inter.woff2"
@@ -58,11 +82,36 @@ const canonical = localeHref(locale);
                 <link
                     rel="alternate"
                     hreflang={loc}
-                    href={localeHref(loc)}
+                    href={toAbs(localeHref(loc))}
                 />
             ))
         }
-        <link rel="alternate" hreflang="x-default" href="/" />
+        <link rel="alternate" hreflang="x-default" href={toAbs("/")} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Sebastian Garcia" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:title" content={dict.meta.title} />
+        <meta property="og:description" content={dict.meta.description} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="1200" />
+        <meta property="og:image:alt" content={dict.about.imageAlt} />
+        <meta property="og:locale" content={ogLocaleMap[locale]} />
+        {
+            locales
+                .filter((loc) => loc !== locale)
+                .map((loc) => (
+                    <meta
+                        property="og:locale:alternate"
+                        content={ogLocaleMap[loc]}
+                    />
+                ))
+        }
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={dict.meta.title} />
+        <meta name="twitter:description" content={dict.meta.description} />
+        <meta name="twitter:image" content={ogImageUrl} />
+        <meta name="twitter:image:alt" content={dict.about.imageAlt} />
         <title>{dict.meta.title}</title>
     </head>
     <body>

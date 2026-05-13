@@ -26,6 +26,56 @@ for (const locale of locales) {
             ).toBe(dict.about.subtitle);
         });
 
+        it("declares Person microdata with the canonical name, address and sameAs links", async () => {
+            const container = await AstroContainer.create();
+            const html = await container.renderToString(About, {
+                props: { locale },
+            });
+            const { document } = parseHTML(html);
+
+            const person = document.querySelector(
+                'section.about[itemtype="https://schema.org/Person"]',
+            );
+            expect(person).not.toBeNull();
+            expect(person?.hasAttribute("itemscope")).toBe(true);
+
+            const name = person?.querySelector('meta[itemprop="name"]');
+            expect(name?.getAttribute("content")).toBe("Sebastian Garcia");
+
+            const sameAs = [
+                ...(person?.querySelectorAll('link[itemprop="sameAs"]') ?? []),
+            ].map((l) => l.getAttribute("href"));
+            expect(sameAs).toContain(
+                "https://www.linkedin.com/in/sebastiangarcialopez",
+            );
+            expect(sameAs).toContain("https://github.com/seebgar");
+
+            const address = person
+                ?.querySelector('meta[itemprop="address"]')
+                ?.getAttribute("content");
+            expect(address).toContain("Bogotá");
+            expect(address).toContain("Colombia");
+        });
+
+        it("keeps the section grid clean (only text-section and image as direct children render)", async () => {
+            const container = await AstroContainer.create();
+            const html = await container.renderToString(About, {
+                props: { locale },
+            });
+            const { document } = parseHTML(html);
+
+            const section = document.querySelector("section.about");
+            const renderingChildren = [
+                ...(section?.children ?? []),
+            ].filter((el) => {
+                const tag = el.tagName.toLowerCase();
+                return tag !== "meta" && tag !== "link";
+            });
+            expect(renderingChildren.length).toBe(2);
+            expect(renderingChildren[0].className).toBe("about__txt__section");
+            expect(renderingChildren[1].tagName.toLowerCase()).toBe("img");
+        });
+
         it("renders an LCP-prioritized image with localized alt and 2:3 aspect ratio", async () => {
             const container = await AstroContainer.create();
             const html = await container.renderToString(About, {

@@ -7,6 +7,8 @@ export const locales = ["en", "es", "fr"] as const;
 
 export const defaultLocale: Locale = "en";
 
+export const siteUrl = "https://sebastiangarcia.net";
+
 const dictionaries: Record<Locale, Dict> = { en, es, fr };
 
 export const isLocale = (value: unknown): value is Locale =>

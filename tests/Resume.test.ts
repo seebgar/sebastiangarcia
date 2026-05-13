@@ -8,7 +8,7 @@ for (const locale of locales) {
     describe(`Resume [${locale}]`, () => {
         const dict = getDict(locale);
 
-        it("renders the Resume heading anchor target", async () => {
+        it("renders the Resume heading as h2 (subordinate to page h1)", async () => {
             const container = await AstroContainer.create();
             const html = await container.renderToString(Resume, {
                 props: { locale },
@@ -16,7 +16,7 @@ for (const locale of locales) {
             const { document } = parseHTML(html);
 
             const heading = document.querySelector("#resume");
-            expect(heading?.tagName.toLowerCase()).toBe("h1");
+            expect(heading?.tagName.toLowerCase()).toBe("h2");
             expect(heading?.textContent).toBe(dict.resume.title);
         });
 
