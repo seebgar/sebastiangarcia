@@ -14,9 +14,17 @@ const dict = getDict(locale);
 
 <div class="pre__section">
   <section class="contact" id="contact">
-    <div class="contact__txt__section">
-      <h2 class="contact__txt__title">{dict.contact.title}</h2>
-      <div class="contact__txt__subtitle">
+    <Image
+      class="contact__bg"
+      src={profilePhoto}
+      alt={dict.contact.imageAlt}
+      loading="lazy"
+      decoding="async"
+    />
+
+    <div class="contact__card">
+      <h2 class="contact__card__title">{dict.contact.title}</h2>
+      <div class="contact__card__links">
         <p>{dict.contact.labels.mail}</p>
         <a href="mailto:hello@sebastiangarcia.net"> hello@sebastiangarcia.net </a>
         <p>{dict.contact.labels.linkedin}</p>
@@ -33,16 +41,6 @@ const dict = getDict(locale);
         </a>
       </div>
     </div>
-
-    <div>&nbsp;</div>
-
-    <Image
-      class="contact__image"
-      src={profilePhoto}
-      alt={dict.contact.imageAlt}
-      loading="lazy"
-      decoding="async"
-    />
   </section>
 
   <p class="page__index">{dict.contact.pageIndex}</p>

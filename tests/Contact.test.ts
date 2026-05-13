@@ -17,7 +17,7 @@ for (const locale of locales) {
 
       const section = document.querySelector('section.contact');
       expect(section?.getAttribute('id')).toBe('contact');
-      expect(document.querySelector('.contact__txt__title')?.textContent).toBe(dict.contact.title);
+      expect(document.querySelector('.contact__card__title')?.textContent).toBe(dict.contact.title);
     });
 
     it('renders a mailto link whose href matches its visible text', async () => {
@@ -61,11 +61,25 @@ for (const locale of locales) {
       });
       const { document } = parseHTML(html);
 
-      const img = document.querySelector('img.contact__image') as HTMLImageElement | null;
+      const img = document.querySelector('img.contact__bg') as HTMLImageElement | null;
       expect(img).not.toBeNull();
       expect(img!.getAttribute('alt')).toBe(dict.contact.imageAlt);
       expect(img!.getAttribute('loading')).toBe('lazy');
       expect(img!.getAttribute('decoding')).toBe('async');
+    });
+
+    it('layers the background image and contact card without sentinel siblings', async () => {
+      const container = await AstroContainer.create();
+      const html = await container.renderToString(Contact, {
+        props: { locale },
+      });
+      const { document } = parseHTML(html);
+
+      const section = document.querySelector('section.contact')!;
+      const elementChildren = [...section.children] as Element[];
+      expect(elementChildren).toHaveLength(2);
+      expect(elementChildren[0].classList.contains('contact__bg')).toBe(true);
+      expect(elementChildren[1].classList.contains('contact__card')).toBe(true);
     });
   });
 }
