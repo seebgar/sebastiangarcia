@@ -22,7 +22,15 @@ export interface ExperienceEntry {
 export interface AdditionalExperienceEntry {
   company: string;
   role: string;
+  period: string;
   bullets: string[];
+}
+
+export interface CertificationEntry {
+  title: string;
+  date: string;
+  issuer: string;
+  verifyUrl?: string;
 }
 
 export interface Dict {
@@ -47,16 +55,18 @@ export interface Dict {
     title: string;
     pageIndex: string;
     sections: {
-      education: string;
+      certifications: string;
       skills: string;
+      education: string;
       experience: string;
       additionalExperience: string;
     };
     skills: {
-      programmingLanguages: SkillCategory;
+      backendApis: SkillCategory;
       webMobile: SkillCategory;
-      cloudDevOps: SkillCategory;
+      cloudDevOpsTools: SkillCategory;
     };
+    certifications: CertificationEntry[];
     education: EducationEntry[];
     experience: ExperienceEntry[];
     additionalExperience: AdditionalExperienceEntry[];

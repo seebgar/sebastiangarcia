@@ -14,48 +14,84 @@ const dict: Dict = {
   },
   about: {
     title: "I'm Sebastian Garcia",
-    subtitle: 'Software engineer focused on full-stack development.',
-    bio: 'Over the years, I’ve built and optimized large-scale systems in both start-ups and enterprises. I enjoy designing clean, scalable architectures and solving tough engineering problems through collaboration and iteration. I’m also drawn to cloud technologies, modern development practices, and finding smart ways to reduce complexity.',
-    pageIndex: 'About  |  P/01',
+    subtitle: 'Full-stack engineer building enterprise-scale fintech and cloud-native platforms.',
+    bio: "I'm a full-stack software engineer with {years}+ years of experience building enterprise fintech platforms and cloud-native systems across Java, C#, and JavaScript ecosystems. I've led cross-functional teams modernizing high-traffic services — hardening security, migrating microservices to GCP, and accelerating delivery without disruption. I enjoy designing clean, scalable architectures and finding smart ways to bridge business priorities with engineering trade-offs.",
+    pageIndex: 'About  |  P/01',
     imageAlt: 'Portrait of Sebastian Garcia',
   },
   resume: {
     title: 'Resume.',
-    pageIndex: 'Resume  |  P/02',
+    pageIndex: 'Resume  |  P/02',
     sections: {
-      education: 'Education',
+      certifications: 'Certifications',
       skills: 'Skills',
+      education: 'Education',
       experience: 'Experience',
       additionalExperience: 'Additional Experience',
     },
     skills: {
-      programmingLanguages: {
-        label: 'Programming Languages',
-        items: 'Java (Expert), Python (Expert), .Net C# (3+ years), SQL, NoSQL.',
-        alt: 'Programming languages icon',
+      backendApis: {
+        label: 'Backend & APIs',
+        items:
+          'Java (Expert), C#, Python (Expert), SQL, NoSQL, Spring, .NET Core, REST/SOAP, Microservices, Kafka, OAuth2 / JWT.',
+        alt: 'Backend and APIs icon',
       },
       webMobile: {
         label: 'Web and Mobile Technologies',
         items: 'ReactJS, Angular, JavaScript, TypeScript, HTML, SCSS, Flutter, Swift.',
         alt: 'Web and mobile technologies icon',
       },
-      cloudDevOps: {
-        label: 'Cloud & DevOps',
+      cloudDevOpsTools: {
+        label: 'Cloud, DevOps & Tools',
         items:
-          'Google Cloud Platform (GCP), Microsoft Azure, Amazon Web Services (AWS), Kubernetes, Continuous Integration and Continuous Delivery (CI/CD), Agile Methodologies.',
-        alt: 'Cloud and DevOps icon',
+          'Google Cloud Platform (GCP), Microsoft Azure, Amazon Web Services (AWS), Kubernetes, Continuous Integration and Continuous Delivery (CI/CD), Agile Methodologies, Jira, Confluence, Jenkins, Git, Dynatrace, Splunk.',
+        alt: 'Cloud, DevOps and tools icon',
       },
     },
+    certifications: [
+      {
+        title: 'CCSP Specialization (Pearson)',
+        date: 'Aug 2025',
+        issuer: 'Coursera',
+        verifyUrl: 'https://coursera.org/verify/specialization/FOAG4X64PJQM',
+      },
+      {
+        title: 'Google Cloud Fundamentals: Core Infrastructure',
+        date: 'Aug 2025',
+        issuer: 'Google Cloud',
+        verifyUrl: 'https://coursera.org/verify/TPIW3878UR0L',
+      },
+      {
+        title: 'Cybersecurity with Cloud Computing',
+        date: 'Aug 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Cryptography and Network Security',
+        date: 'Aug 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'IT Security Foundations: Core Concepts',
+        date: 'Aug 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Identity and Access Management',
+        date: 'Aug 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Neural Networks and Deep Learning',
+        date: '2021',
+        issuer: 'DeepLearning.AI',
+      },
+    ],
     education: [
       {
         school: 'University of the Andes',
         period: '2016 – 2021',
         degree: 'Bachelor of Engineering in Computer & Systems',
-      },
-      {
-        school: 'Deep Learning AI Certificate',
-        period: '2021',
-        degree: 'Neural Networks and Deep Learning',
       },
       {
         school: 'Vermont High School',
@@ -101,6 +137,7 @@ const dict: Dict = {
       {
         company: 'University of the Andes',
         role: 'Teaching Assistant',
+        period: 'Aug 2017 – Dec 2018',
         bullets: [
           'Taught full-stack development and API design using Java, React, NoSQL, and Jenkins.',
           'Mentored students on coding projects, strengthening their problem-solving skills.',
@@ -110,7 +147,7 @@ const dict: Dict = {
   },
   contact: {
     title: 'Contact',
-    pageIndex: 'Contact  |  P/03',
+    pageIndex: 'Contact  |  P/03',
     labels: {
       mail: 'Mail',
       linkedin: 'LinkedIn',

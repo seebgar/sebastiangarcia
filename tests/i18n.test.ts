@@ -3,6 +3,7 @@ import { parseHTML } from 'linkedom';
 import { describe, it, expect } from 'vitest';
 import LanguageSelector from '../src/components/LanguageSelector.astro';
 import {
+  careerStartYear,
   defaultLocale,
   getDict,
   getLocalePaths,
@@ -10,6 +11,7 @@ import {
   localeHref,
   localeMetadata,
   locales,
+  yearsOfExperience,
 } from '../src/i18n';
 import type { Locale } from '../src/i18n/types';
 
@@ -63,6 +65,7 @@ describe('i18n helpers', () => {
     for (const loc of locales) {
       if (loc === defaultLocale) continue;
       const dict = getDict(loc);
+      expect(dict.resume.certifications.length).toBe(refDict.resume.certifications.length);
       expect(dict.resume.education.length).toBe(refDict.resume.education.length);
       expect(dict.resume.experience.length).toBe(refDict.resume.experience.length);
       expect(dict.resume.additionalExperience.length).toBe(
@@ -74,6 +77,25 @@ describe('i18n helpers', () => {
         );
       }
     }
+  });
+
+  it('verifyUrl presence matches across locales for each certification', () => {
+    const refDict = getDict(defaultLocale);
+    for (const loc of locales) {
+      if (loc === defaultLocale) continue;
+      const dict = getDict(loc);
+      for (let i = 0; i < refDict.resume.certifications.length; i++) {
+        const refHasUrl = Boolean(refDict.resume.certifications[i].verifyUrl);
+        const locHasUrl = Boolean(dict.resume.certifications[i].verifyUrl);
+        expect(locHasUrl).toBe(refHasUrl);
+      }
+    }
+  });
+
+  it('yearsOfExperience counts whole years since careerStartYear', () => {
+    expect(careerStartYear).toBeGreaterThan(2000);
+    expect(yearsOfExperience(new Date(`${careerStartYear}-06-15`))).toBe(0);
+    expect(yearsOfExperience(new Date(`${careerStartYear + 7}-02-01`))).toBe(7);
   });
 
   it('getLocalePaths returns one entry per non-default locale', () => {

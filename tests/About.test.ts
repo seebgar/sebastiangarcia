@@ -2,7 +2,7 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { parseHTML } from 'linkedom';
 import { describe, it, expect } from 'vitest';
 import About from '../src/components/About.astro';
-import { getDict, locales } from '../src/i18n';
+import { getDict, locales, yearsOfExperience } from '../src/i18n';
 
 for (const locale of locales) {
   describe(`About [${locale}]`, () => {
@@ -22,6 +22,18 @@ for (const locale of locales) {
       expect(document.querySelector('.about__txt__subtitle')?.textContent).toBe(
         dict.about.subtitle,
       );
+    });
+
+    it('substitutes the {years} token in the bio with the current years of experience', async () => {
+      const container = await AstroContainer.create();
+      const html = await container.renderToString(About, {
+        props: { locale },
+      });
+      const { document } = parseHTML(html);
+
+      const description = document.querySelector('[itemprop="description"]')?.textContent ?? '';
+      expect(description).not.toContain('{years}');
+      expect(description).toContain(String(yearsOfExperience()));
     });
 
     it('declares Person microdata with the canonical name, address and sameAs links', async () => {
