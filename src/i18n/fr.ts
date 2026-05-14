@@ -13,10 +13,10 @@ const dict: Dict = {
     skipToContent: 'Aller au contenu',
   },
   about: {
-    title: 'Je suis Sebastian Garcia',
+    title: "J'suis Sebastian Garcia",
     subtitle:
       'Ingénieur full-stack qui conçoit des plateformes fintech à grande échelle et des systèmes cloud-native.',
-    bio: 'Je suis ingénieur logiciel full-stack avec plus de {years} ans d’expérience dans la conception de plateformes fintech d’entreprise et de systèmes cloud-native, sur les écosystèmes Java, C# et JavaScript. J’ai dirigé des équipes pluridisciplinaires pour moderniser des services à fort trafic — en renforçant la sécurité, en migrant des microservices vers GCP et en accélérant les livraisons sans interruption. J’aime concevoir des architectures propres et évolutives, et trouver des façons intelligentes de concilier les priorités métier et les arbitrages d’ingénierie.',
+    bio: 'Je suis ingénieur logiciel full-stack avec plus de {years} ans d’expérience dans la conception de plateformes fintech d’entreprise et de systèmes cloud-native, sur les écosystèmes Java, C# et JavaScript. J’ai dirigé des équipes pluridisciplinaires pour moderniser des services à fort trafic - en renforçant la sécurité, en migrant des microservices vers GCP et en accélérant les livraisons sans interruption. J’aime concevoir des architectures propres et évolutives, et trouver des façons intelligentes de concilier les priorités métier et les arbitrages d’ingénierie.',
     pageIndex: 'À propos  |  P/01',
     imageAlt: 'Portrait de Sebastian Garcia',
   },
@@ -95,7 +95,7 @@ const dict: Dict = {
         degree: 'Licence en génie des systèmes et informatique',
       },
       {
-        school: 'Vermont High School',
+        school: 'Lycée Vermont',
         period: '2016',
         degree: 'Baccalauréat International',
       },

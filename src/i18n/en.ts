@@ -15,7 +15,7 @@ const dict: Dict = {
   about: {
     title: "I'm Sebastian Garcia",
     subtitle: 'Full-stack engineer building enterprise-scale fintech and cloud-native platforms.',
-    bio: "I'm a full-stack software engineer with {years}+ years of experience building enterprise fintech platforms and cloud-native systems across Java, C#, and JavaScript ecosystems. I've led cross-functional teams modernizing high-traffic services — hardening security, migrating microservices to GCP, and accelerating delivery without disruption. I enjoy designing clean, scalable architectures and finding smart ways to bridge business priorities with engineering trade-offs.",
+    bio: "I'm a full-stack software engineer with {years}+ years of experience building enterprise fintech platforms and cloud-native systems across Java, C#, and JavaScript ecosystems. I've led cross-functional teams modernizing high-traffic services - hardening security, migrating microservices to GCP, and accelerating delivery without disruption. I enjoy designing clean, scalable architectures and finding smart ways to bridge business priorities with engineering trade-offs.",
     pageIndex: 'About  |  P/01',
     imageAlt: 'Portrait of Sebastian Garcia',
   },
