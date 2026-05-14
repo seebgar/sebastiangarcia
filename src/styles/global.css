@@ -293,6 +293,10 @@ main {
   row-gap: var(--space-m);
 }
 
+.resume__skills__title .resume__txt__subtitle {
+  margin-block-end: 0;
+}
+
 .resume__entry {
   display: grid;
   gap: 0.15rem;
