@@ -12,6 +12,10 @@ _Avoid_: hero image, contact photo, background. (Note: despite the name, this is
 The translucent panel containing the contact methods (mail, LinkedIn, GitHub) that overlays the background image.
 _Avoid_: contact box, contact panel, info card.
 
+**Certifications**:
+The Resume section listing professional development credentials — Coursera specializations, LinkedIn Learning courses, and similar third-party programs. Each entry has a title, date, and issuer (optionally hyperlinked to a public verification URL). Distinct from **Education**, which is reserved for formal academic credentials (university degrees, IB / high-school programs).
+_Avoid_: courses, trainings, learnings, credentials.
+
 ## Relationships
 
 - The **Contact card** overlays the **Background image** on the Contact section

@@ -12,28 +12,37 @@ interface Props {
 
 const { locale } = Astro.props;
 const dict = getDict(locale);
-const { sections, skills, education, experience, additionalExperience } = dict.resume;
+const { sections, skills, certifications, education, experience, additionalExperience } =
+  dict.resume;
 
 const skillCards = [
-  { category: skills.programmingLanguages, photo: serverPhoto },
+  { category: skills.backendApis, photo: serverPhoto },
   { category: skills.webMobile, photo: webPhoto },
-  { category: skills.cloudDevOps, photo: cloudPhoto },
+  { category: skills.cloudDevOpsTools, photo: cloudPhoto },
 ];
 ---
 
 <div class="pre__section">
   <section class="resume">
-    <div class="resume__txt__section">
+    <div class="resume__txt__section resume__certifications">
       <h2 class="about__txt__title" id="resume">{dict.resume.title}</h2>
-      <p class="resume__txt__subtitle">{sections.education}</p>
+      <p class="resume__txt__subtitle">{sections.certifications}</p>
       {
-        education.map((item) => (
-          <>
-            <p class="resume__txt__experience__company">{item.school}</p>
-            <p class="resume__txt__period">{item.period}</p>
-            <p>{item.degree}</p>
-            <br />
-          </>
+        certifications.map((cert) => (
+          <div class="resume__entry">
+            <p class="resume__txt__experience__company">{cert.title}</p>
+            <p class="resume__txt__period">
+              {cert.date}
+              <br />
+              {cert.verifyUrl ? (
+                <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+                  {cert.issuer}
+                </a>
+              ) : (
+                cert.issuer
+              )}
+            </p>
+          </div>
         ))
       }
     </div>
@@ -63,12 +72,28 @@ const skillCards = [
         ))
       }
     </div>
+
+    <div class="resume__txt__section resume__education">
+      <p class="resume__txt__subtitle">{sections.education}</p>
+      {
+        education.map((item) => (
+          <div class="resume__entry">
+            <p class="resume__txt__experience__company">{item.school}</p>
+            <p class="resume__txt__period">
+              {item.period}
+              <br />
+              {item.degree}
+            </p>
+          </div>
+        ))
+      }
+    </div>
   </section>
   <section class="resume_experience">
     <div>
       <p class="resume__txt__subtitle">{sections.experience}</p>
       {
-        experience.map((item, i) => (
+        experience.map((item) => (
           <>
             <p class="resume__txt__experience__company">{item.company}</p>
             <p>
@@ -81,8 +106,7 @@ const skillCards = [
                 </li>
               ))}
             </ul>
-            {i !== experience.length - 1 && <hr />}
-            <br />
+            <hr />
           </>
         ))
       }
@@ -91,7 +115,9 @@ const skillCards = [
         additionalExperience.map((item) => (
           <>
             <p class="resume__txt__experience__company">{item.company}</p>
-            <p>{item.role}</p>
+            <p>
+              {item.role}&nbsp;&sol;&nbsp;{item.period}{' '}
+            </p>
             <ul class="resume__list">
               {item.bullets.map((bullet) => (
                 <li>

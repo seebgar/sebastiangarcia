@@ -9,6 +9,11 @@ export const defaultLocale: Locale = 'en';
 
 export const siteUrl = 'https://sebastiangarcia.net';
 
+export const careerStartYear = 2020;
+
+export const yearsOfExperience = (now: Date = new Date()): number =>
+  now.getFullYear() - careerStartYear;
+
 const dictionaries: Record<Locale, Dict> = { en, es, fr };
 
 export const isLocale = (value: unknown): value is Locale =>
