@@ -30,9 +30,9 @@ for (const locale of locales) {
       const resume = document.querySelector('section.resume');
       const blocks = [...(resume?.children ?? [])];
       expect(blocks.length).toBe(3);
-      expect(blocks[0].className).toBe('resume__txt__section');
-      expect(blocks[1].className).toBe('resume__skills');
-      expect(blocks[2].className).toBe('resume__txt__section');
+      expect(blocks[0].classList.contains('resume__certifications')).toBe(true);
+      expect(blocks[1].classList.contains('resume__skills')).toBe(true);
+      expect(blocks[2].classList.contains('resume__education')).toBe(true);
 
       const certSubtitle = blocks[0].querySelector('.resume__txt__subtitle');
       expect(certSubtitle?.textContent).toBe(dict.resume.sections.certifications);
@@ -40,22 +40,26 @@ for (const locale of locales) {
       expect(eduSubtitle?.textContent).toBe(dict.resume.sections.education);
     });
 
-    it('renders one entry per certification with title, date and issuer', async () => {
+    it('renders one entry per certification, each with a title paragraph and a date/issuer paragraph', async () => {
       const container = await AstroContainer.create();
       const html = await container.renderToString(Resume, {
         props: { locale },
       });
       const { document } = parseHTML(html);
 
-      const certBlock = document.querySelector('section.resume')?.children[0];
-      const titles = certBlock?.querySelectorAll('.resume__txt__experience__company');
-      expect(titles?.length).toBe(dict.resume.certifications.length);
-      const dates = certBlock?.querySelectorAll('.resume__txt__period');
-      expect(dates?.length).toBe(dict.resume.certifications.length);
+      const certBlock = document.querySelector('.resume__certifications');
+      const entries = certBlock?.querySelectorAll('.resume__entry');
+      expect(entries?.length).toBe(dict.resume.certifications.length);
 
       const first = dict.resume.certifications[0];
-      expect(titles?.[0].textContent?.trim()).toBe(first.title);
-      expect(dates?.[0].textContent?.trim()).toBe(first.date);
+      const firstEntry = entries?.[0];
+      const title = firstEntry?.querySelector('.resume__txt__experience__company');
+      expect(title?.textContent?.trim()).toBe(first.title);
+
+      const meta = firstEntry?.querySelector('.resume__txt__period');
+      expect(meta?.textContent).toContain(first.date);
+      expect(meta?.textContent).toContain(first.issuer);
+      expect(meta?.querySelector('br')).not.toBeNull();
     });
 
     it('renders verifiable certifications as external links and others as plain text', async () => {
@@ -65,7 +69,7 @@ for (const locale of locales) {
       });
       const { document } = parseHTML(html);
 
-      const certBlock = document.querySelector('section.resume')?.children[0];
+      const certBlock = document.querySelector('.resume__certifications');
       const verifiable = dict.resume.certifications.filter((c) => c.verifyUrl);
       const links = [
         ...(certBlock?.querySelectorAll('a[target="_blank"]') ?? []),
@@ -81,20 +85,24 @@ for (const locale of locales) {
       }
     });
 
-    it('renders one entry per education item with school, period and degree', async () => {
+    it('renders one entry per education item with school, period and degree in the meta line', async () => {
       const container = await AstroContainer.create();
       const html = await container.renderToString(Resume, {
         props: { locale },
       });
       const { document } = parseHTML(html);
 
-      const eduBlock = document.querySelector('section.resume')?.children[2];
-      const schools = eduBlock?.querySelectorAll('.resume__txt__experience__company');
-      expect(schools?.length).toBe(dict.resume.education.length);
-      expect(schools?.[0].textContent?.trim()).toBe(dict.resume.education[0].school);
-      const periods = eduBlock?.querySelectorAll('.resume__txt__period');
-      expect(periods?.length).toBe(dict.resume.education.length);
-      expect(periods?.[0].textContent?.trim()).toBe(dict.resume.education[0].period);
+      const eduBlock = document.querySelector('.resume__education');
+      const entries = eduBlock?.querySelectorAll('.resume__entry');
+      expect(entries?.length).toBe(dict.resume.education.length);
+
+      const first = dict.resume.education[0];
+      const firstEntry = entries?.[0];
+      const school = firstEntry?.querySelector('.resume__txt__experience__company');
+      expect(school?.textContent?.trim()).toBe(first.school);
+      const meta = firstEntry?.querySelector('.resume__txt__period');
+      expect(meta?.textContent).toContain(first.period);
+      expect(meta?.textContent).toContain(first.degree);
     });
 
     it('renders one skill card per dictionary category with localized alt text and lazy loading', async () => {

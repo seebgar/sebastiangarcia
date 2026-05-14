@@ -24,25 +24,25 @@ const skillCards = [
 
 <div class="pre__section">
   <section class="resume">
-    <div class="resume__txt__section">
+    <div class="resume__txt__section resume__certifications">
       <h2 class="about__txt__title" id="resume">{dict.resume.title}</h2>
       <p class="resume__txt__subtitle">{sections.certifications}</p>
       {
         certifications.map((cert) => (
-          <>
+          <div class="resume__entry">
             <p class="resume__txt__experience__company">{cert.title}</p>
-            <p class="resume__txt__period">{cert.date}</p>
-            {cert.verifyUrl ? (
-              <p>
+            <p class="resume__txt__period">
+              {cert.date}
+              <br />
+              {cert.verifyUrl ? (
                 <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
                   {cert.issuer}
                 </a>
-              </p>
-            ) : (
-              <p>{cert.issuer}</p>
-            )}
-            <br />
-          </>
+              ) : (
+                cert.issuer
+              )}
+            </p>
+          </div>
         ))
       }
     </div>
@@ -73,16 +73,18 @@ const skillCards = [
       }
     </div>
 
-    <div class="resume__txt__section">
+    <div class="resume__txt__section resume__education">
       <p class="resume__txt__subtitle">{sections.education}</p>
       {
         education.map((item) => (
-          <>
+          <div class="resume__entry">
             <p class="resume__txt__experience__company">{item.school}</p>
-            <p class="resume__txt__period">{item.period}</p>
-            <p>{item.degree}</p>
-            <br />
-          </>
+            <p class="resume__txt__period">
+              {item.period}
+              <br />
+              {item.degree}
+            </p>
+          </div>
         ))
       }
     </div>
