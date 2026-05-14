@@ -102,7 +102,7 @@ const dict: Dict = {
     experience: [
       {
         company: 'Scotia GBS Colombia / Scotiabank',
-        role: 'Full-Stack Software Engineer',
+        role: 'Software Engineer Specialist',
         period: 'Jan 2022 – Present',
         bullets: [
           'Led development of Automotive Financing platforms using Java, C#, and React, improving efficiency in processing 200+ monthly credit applications.',
