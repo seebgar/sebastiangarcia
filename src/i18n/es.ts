@@ -147,7 +147,7 @@ const dict: Dict = {
     ],
   },
   contact: {
-    title: 'Contacto',
+    title: 'Contacto.',
     pageIndex: 'Contacto  |  P/03',
     labels: {
       mail: 'Correo',

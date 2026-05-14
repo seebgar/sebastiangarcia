@@ -438,7 +438,7 @@ main {
 
 @keyframes parallax-md {
   from {
-    transform: translateY(0%);
+    transform: translateY(-10%);
   }
   to {
     transform: translateY(30%);
@@ -447,7 +447,7 @@ main {
 
 @keyframes parallax-lg {
   from {
-    transform: translateY(0%);
+    transform: translateY(-15%);
   }
   to {
     transform: translateY(45%);

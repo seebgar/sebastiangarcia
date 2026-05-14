@@ -93,7 +93,7 @@ const skillCards = [
     <div>
       <p class="resume__txt__subtitle">{sections.experience}</p>
       {
-        experience.map((item, i) => (
+        experience.map((item) => (
           <>
             <p class="resume__txt__experience__company">{item.company}</p>
             <p>
@@ -106,8 +106,7 @@ const skillCards = [
                 </li>
               ))}
             </ul>
-            {i !== experience.length - 1 && <hr />}
-            <br />
+            <hr />
           </>
         ))
       }

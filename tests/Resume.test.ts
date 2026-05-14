@@ -150,7 +150,7 @@ for (const locale of locales) {
       expect(subtitles?.[1].textContent).toBe(dict.resume.sections.additionalExperience);
 
       const separators = experienceSection?.querySelectorAll('hr');
-      expect(separators?.length).toBe(dict.resume.experience.length - 1);
+      expect(separators?.length).toBe(dict.resume.experience.length);
 
       const additionalPeriod = dict.resume.additionalExperience[0].period;
       expect(experienceSection?.textContent).toContain(additionalPeriod);
