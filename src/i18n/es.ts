@@ -13,39 +13,81 @@ const dict: Dict = {
     skipToContent: 'Saltar al contenido',
   },
   about: {
-    title: 'Soy Sebastian Garcia',
-    subtitle: 'Ingeniero de software enfocado en desarrollo full-stack.',
-    bio: 'A lo largo de los años he construido y optimizado sistemas a gran escala, tanto en start-ups como en grandes empresas. Disfruto diseñando arquitecturas limpias y escalables, y resolviendo problemas de ingeniería desafiantes a través de la colaboración y la iteración. También me apasionan las tecnologías en la nube, las prácticas modernas de desarrollo y encontrar formas inteligentes de reducir la complejidad.',
-    pageIndex: 'Sobre mí  |  P/01',
+    title: 'Sebastian Garcia',
+    subtitle:
+      'Ingeniero full-stack construyendo plataformas fintech a gran escala y sistemas nativos en la nube.',
+    bio: 'Soy ingeniero de software full-stack con más de {years} años de experiencia construyendo plataformas fintech empresariales y sistemas nativos en la nube en los ecosistemas de Java, C# y JavaScript. He liderado equipos multifuncionales en la modernización de servicios de alto tráfico - endureciendo la seguridad, migrando microservicios a GCP y acelerando las entregas sin interrupciones. Disfruto diseñando arquitecturas limpias y escalables, y encontrando formas inteligentes de conciliar las prioridades de negocio con las decisiones de ingeniería.',
+    pageIndex: 'Sobre mí  |  P/01',
     imageAlt: 'Retrato de Sebastian Garcia',
   },
   resume: {
     title: 'CV.',
-    pageIndex: 'CV  |  P/02',
+    pageIndex: 'CV  |  P/02',
     sections: {
-      education: 'Educación',
+      certifications: 'Certificaciones',
       skills: 'Habilidades',
+      education: 'Educación',
       experience: 'Experiencia',
       additionalExperience: 'Experiencia adicional',
     },
     skills: {
-      programmingLanguages: {
-        label: 'Lenguajes de programación',
-        items: 'Java (Experto), Python (Experto), .Net C# (3+ años), SQL, NoSQL.',
-        alt: 'Ícono de lenguajes de programación',
+      backendApis: {
+        label: 'Backend y APIs',
+        items:
+          'Java (Experto), C#, Python (Experto), SQL, NoSQL, Spring, .NET Core, REST/SOAP, Microservicios, Kafka, OAuth2 / JWT.',
+        alt: 'Ícono de backend y APIs',
       },
       webMobile: {
         label: 'Tecnologías web y móviles',
         items: 'ReactJS, Angular, JavaScript, TypeScript, HTML, SCSS, Flutter, Swift.',
         alt: 'Ícono de tecnologías web y móviles',
       },
-      cloudDevOps: {
-        label: 'Nube y DevOps',
+      cloudDevOpsTools: {
+        label: 'Nube, DevOps y herramientas',
         items:
-          'Google Cloud Platform (GCP), Microsoft Azure, Amazon Web Services (AWS), Kubernetes, Integración y Entrega Continuas (CI/CD), Metodologías ágiles.',
-        alt: 'Ícono de nube y DevOps',
+          'Google Cloud Platform (GCP), Microsoft Azure, Amazon Web Services (AWS), Kubernetes, Integración y Entrega Continuas (CI/CD), Metodologías ágiles, Jira, Confluence, Jenkins, Git, Dynatrace, Splunk.',
+        alt: 'Ícono de nube, DevOps y herramientas',
       },
     },
+    certifications: [
+      {
+        title: 'Especialización CCSP (Pearson)',
+        date: 'Ago 2025',
+        issuer: 'Coursera',
+        verifyUrl: 'https://coursera.org/verify/specialization/FOAG4X64PJQM',
+      },
+      {
+        title: 'Google Cloud Fundamentals: Core Infrastructure',
+        date: 'Ago 2025',
+        issuer: 'Google Cloud',
+        verifyUrl: 'https://coursera.org/verify/TPIW3878UR0L',
+      },
+      {
+        title: 'Ciberseguridad con Cloud Computing',
+        date: 'Ago 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Criptografía y Seguridad de Redes',
+        date: 'Ago 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Fundamentos de Seguridad TI: Conceptos básicos',
+        date: 'Ago 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Gestión de Identidad y Accesos',
+        date: 'Ago 2025',
+        issuer: 'LinkedIn Learning',
+      },
+      {
+        title: 'Redes Neuronales y Deep Learning',
+        date: '2021',
+        issuer: 'DeepLearning.AI',
+      },
+    ],
     education: [
       {
         school: 'Universidad de los Andes',
@@ -53,12 +95,7 @@ const dict: Dict = {
         degree: 'Ingeniería de Sistemas y Computación',
       },
       {
-        school: 'Certificado Deep Learning AI',
-        period: '2021',
-        degree: 'Redes Neuronales y Deep Learning',
-      },
-      {
-        school: 'Vermont High School',
+        school: 'Colegio Gimnasio Vermont',
         period: '2016',
         degree: 'Bachillerato Internacional',
       },
@@ -101,6 +138,7 @@ const dict: Dict = {
       {
         company: 'Universidad de los Andes',
         role: 'Monitor académico',
+        period: 'Ago 2017 – Dic 2018',
         bullets: [
           'Enseñé desarrollo full-stack y diseño de APIs con Java, React, NoSQL y Jenkins.',
           'Acompañé a estudiantes en sus proyectos de código, fortaleciendo sus habilidades de resolución de problemas.',
@@ -109,8 +147,8 @@ const dict: Dict = {
     ],
   },
   contact: {
-    title: 'Contacto',
-    pageIndex: 'Contacto  |  P/03',
+    title: 'Contacto.',
+    pageIndex: 'Contacto  |  P/03',
     labels: {
       mail: 'Correo',
       linkedin: 'LinkedIn',

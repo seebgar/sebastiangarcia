@@ -293,6 +293,15 @@ main {
   row-gap: var(--space-m);
 }
 
+.resume__skills__title .resume__txt__subtitle {
+  margin-block-end: 0;
+}
+
+.resume__entry {
+  display: grid;
+  gap: 0.15rem;
+}
+
 .resume__skills__card {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -433,7 +442,7 @@ main {
 
 @keyframes parallax-md {
   from {
-    transform: translateY(0%);
+    transform: translateY(-10%);
   }
   to {
     transform: translateY(30%);
@@ -442,7 +451,7 @@ main {
 
 @keyframes parallax-lg {
   from {
-    transform: translateY(0%);
+    transform: translateY(-15%);
   }
   to {
     transform: translateY(45%);
@@ -491,6 +500,21 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
     align-items: start;
+  }
+
+  .resume__certifications {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .resume__skills {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .resume__education {
+    grid-column: 2;
+    grid-row: 2;
   }
 
   .resume_experience {

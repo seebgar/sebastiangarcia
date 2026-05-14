@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import profilePhoto from '../assets/photos/profile-min.png';
-import { getDict, siteUrl } from '../i18n';
+import { getDict, siteUrl, yearsOfExperience } from '../i18n';
 import type { Locale } from '../i18n/types';
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 const { locale } = Astro.props;
 const dict = getDict(locale);
 const personUrl = Astro.site?.toString() ?? siteUrl;
+const bio = dict.about.bio.replace('{years}', String(yearsOfExperience()));
 ---
 
 <div class="pre__section">
@@ -26,7 +27,7 @@ const personUrl = Astro.site?.toString() ?? siteUrl;
 
       <h1 class="about__txt__title">{dict.about.title}</h1>
       <p class="about__txt__subtitle">{dict.about.subtitle}</p>
-      <p itemprop="description">{dict.about.bio}</p>
+      <p itemprop="description">{bio}</p>
     </div>
 
     <Image
